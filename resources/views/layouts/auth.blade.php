@@ -1,17 +1,4 @@
 <!DOCTYPE html>
-
-<!-- =========================================================
-* Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
-==============================================================
-
-* Product Page: https://themeselection.com/products/sneat-bootstrap-html-admin-template/
-* Created by: ThemeSelection
-* License: You must have a valid license purchased in order to legally use the theme for your project.
-* Copyright ThemeSelection (https://themeselection.com)
-
-=========================================================
- -->
-<!-- beautify ignore:start -->
 <html
   lang="en"
   class="light-style customizer-hide"
@@ -27,13 +14,11 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Login Basic - Pages | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
-
+    <title>{{ $title }}</title>
     <meta name="description" content="" />
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
-
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -41,36 +26,36 @@
       href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
       rel="stylesheet"
     />
-
-    <!-- Icons. Uncomment required icon fonts -->
-    <link rel="stylesheet" href="{{ asset('vendor') }}/fonts/boxicons.css" />
-
     <!-- Core CSS -->
     <link rel="stylesheet" href="{{ asset('vendor') }}/css/core.css" class="template-customizer-core-css" />
     <link rel="stylesheet" href="{{ asset('vendor') }}/css/theme-default.css" class="template-customizer-theme-css" />
 
     <link rel="stylesheet" href="{{ asset('vendor') }}/css/pages/page-auth.css" />
-    <!-- Helpers -->
-
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
   </head>
 
   <body>
     <!-- Content -->
-
     @yield('content')
-
     <!-- / Content -->
-
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
     <script src="{{ asset('vendor') }}/libs/jquery/jquery.js"></script>
     <script src="{{ asset('vendor') }}/js/bootstrap.js"></script>
     <!-- Main JS -->
-    <script src="{{ asset('js') }}/main.js"></script>
+    {{-- <script src="{{ asset('js') }}/main.js"></script> --}}
     <script type="text/javascript">
-    function submit(btn_submit, btn_loading) {
+    async function transAjax(data) {
+      html = null;
+      data.headers = {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+      await $.ajax(data).done(function(res) {
+        html = res;
+      })
+      .fail(function() {
+        return false;
+      })
+      return html
+    }
+    function loading(btn_submit, btn_loading) {
         $('#'+btn_submit).hide();
         $('#'+btn_loading).removeClass('d-none');
     }

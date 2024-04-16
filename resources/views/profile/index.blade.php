@@ -45,186 +45,225 @@
           </div>
           <hr class="my-0" />
           <div class="card-body">
-            <form id="formAccountSettings" method="POST" onsubmit="return false">
+            <form id="formUpdateAccount">
+              @csrf
               <div class="row">
                 <div class="mb-3 col-md-6">
-                  <label for="firstName" class="form-label">First Name</label>
+                  <label for="nik" class="form-label">NIK</label>
                   <input
                     class="form-control"
                     type="text"
-                    id="firstName"
-                    name="firstName"
-                    value="Umaedi"
+                    id="nik"
+                    name="nik"
+                    value="{{ $user['nik'] }}"
+                    readonly
                   />
                 </div>
                 <div class="mb-3 col-md-6">
-                  <label for="lastName" class="form-label">Last Name</label>
-                  <input class="form-control" type="text" name="lastName" id="lastName" value="KH" />
+                  <label for="name" class="form-label">Name</label>
+                  <input class="form-control" type="text" name="name" id="name" value="{{ $user['name'] }}" />
                 </div>
                 <div class="mb-3 col-md-6">
-                  <label for="email" class="form-label">E-mail</label>
+                  <label for="email" class="form-label">Email</label>
                   <input
-                    class="form-control"
                     type="text"
+                    class="form-control"
                     id="email"
                     name="email"
-                    value="devkh@gmail.com"
-                    placeholder="devkh@gmail.com"
+                    value="{{ $user['email'] }}"
                   />
                 </div>
                 <div class="mb-3 col-md-6">
-                  <label for="organization" class="form-label">Organization</label>
+                  <label for="address" class="form-label">Address</label>
                   <input
                     type="text"
                     class="form-control"
-                    id="organization"
-                    name="organization"
-                    value="Duluin"
+                    id="address"
+                    name="address"
+                    value="{{ $user['address'] }}"
                   />
                 </div>
                 <div class="mb-3 col-md-6">
-                  <label class="form-label" for="phoneNumber">Phone Number</label>
+                  <label class="form-label" for="Birthday Addrees">Birthday Addrees</label>
                   <div class="input-group input-group-merge">
-                    <span class="input-group-text">ID (+62)</span>
                     <input
                       type="text"
-                      id="phoneNumber"
-                      name="phoneNumber"
+                      id="Birthday Addrees"
+                      name="birthday_address"
                       class="form-control"
-                      placeholder="85741492045"
+                      value="{{ $user['birthday_address'] }}"
                     />
                   </div>
                 </div>
                 <div class="mb-3 col-md-6">
-                  <label for="address" class="form-label">Address</label>
-                  <input type="text" class="form-control" id="address" name="address" placeholder="Lampung" />
+                  <label for="Birthday Date" class="form-label">Birthday Date</label>
+                  <input type="text" class="form-control" id="Birthday Date" name="birthday_date" value="{{ $user['birthday_date'] }}" />
                 </div>
                 <div class="mb-3 col-md-6">
-                  <label for="state" class="form-label">State</label>
-                  <input class="form-control" type="text" id="state" name="state" placeholder="Way Kanan" />
+                  <label for="phone_number" class="form-label">Phone Number</label>
+                  <input class="form-control" type="text" id="phone_number" name="phone_number" value="{{ $user['phone_number'] }}" />
                 </div>
-                <div class="mb-3 col-md-6">
-                  <label for="zipCode" class="form-label">Zip Code</label>
+                <div class="mb-3 col-md-3">
+                  <label for="gender" class="form-label">Gender</label>
                   <input
                     type="text"
                     class="form-control"
-                    id="zipCode"
-                    name="zipCode"
-                    placeholder="231465"
-                    maxlength="6"
+                    id="gender"
+                    name="gender"
+                    value="{{ $user['gender'] == 'L' ? 'Male' : 'Female' }}"
+                  />
+                </div>
+                <div class="mb-3 col-md-3">
+                  <label for="age" class="form-label">Age</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="age"
+                    name="age"
+                    value="{{ $user['age'] }}"
                   />
                 </div>
               </div>
               <div class="mt-2">
+                <span id="notif"></span>
                 <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+                <button type="reset" class="btn btn-outline-secondary">Reset</button>
               </div>
             </form>
           </div>
           <!-- /Account -->
         </div>
-        <div class="card">
-          <h5 class="card-header">Delete Account</h5>
-          <div class="card-body">
-            <div class="mb-3 col-12 mb-0">
-              <div class="alert alert-warning">
-                <h6 class="alert-heading fw-bold mb-1">Are you sure you want to delete your account?</h6>
-                <p class="mb-0">Once you delete your account, there is no going back. Please be certain.</p>
-              </div>
-            </div>
-            <form id="formAccountDeactivation" onsubmit="return false">
-              <div class="form-check mb-3">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  name="accountActivation"
-                  id="accountActivation"
-                />
-                <label class="form-check-label" for="accountActivation"
-                  >I confirm my account deactivation</label
-                >
-              </div>
-              <button type="submit" class="btn btn-danger deactivate-account">Deactivate Account</button>
-            </form>
-          </div>
-        </div>
       </div>
       <div class="col-md-6">
         <ul class="nav nav-pills flex-column flex-md-row mb-3">
           <li class="nav-item">
-            <a class="nav-link active" href="javascript:void(0);"><i class="bx bx-user me-1"></i> Log Activity</a>
+            <a class="nav-link active" href="javascript:void(0);"><i class="bx bx-user me-1"></i>Emergency Information</a>
           </li>
         </ul>
-        <div class="row text-center" id="loading">
-            <div class="col">
-              <button class="btn btn-primary" type="button">
-                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                Please wait...
-              </button>
-            </div>
-          </div>
-        <div class="card mb-4 d-none" id="dataTable">
+        <div class="card">
           <div class="card-body">
-            <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Devkh</td>
-                    <td>Login syistem</td>
-                    <td>2024-03-31 15:07:00</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Devkh</td>
-                    <td>Login syistem</td>
-                    <td>2024-03-31 15:07:00</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Devkh</td>
-                    <td>Login syistem</td>
-                    <td>2024-03-31 15:07:00</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td>Devkh</td>
-                    <td>Login syistem</td>
-                    <td>2024-03-31 15:07:00</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">5</th>
-                    <td>Devkh</td>
-                    <td>Login syistem</td>
-                    <td>2024-03-31 15:07:00</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">6</th>
-                    <td>Devkh</td>
-                    <td>Login syistem</td>
-                    <td>2024-03-31 15:07:00</td>
-                  </tr>
-                </tbody>
-              </table>
-          </div>
-      </div>
+              <div class="row">
+                <div class="mb-3 col-md-6">
+                  <label for="emergency_name" class="form-label">Emergency Name</label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="emergency_name"
+                    name="emergency_name"
+                    value="{{ $user['emergency_name'] }}"
+                  />
+                </div>
+                <div class="mb-3 col-md-6">
+                  <label for="emergency_relation" class="form-label">Emergency Relation</label>
+                  <input class="form-control" type="text" name="emergency_relation" id="emergency_relation" value="{{ $user['emergency_relation'] }}" />
+                </div>
+                <div class="mb-3 col-md-12">
+                  <label for="emergency_phone_number" class="form-label">Emergency Phone Number</label>
+                  <input class="form-control" type="text" name="emergency_phone_number" id="emergency_phone_number" value="{{ $user['emergency_phone_number'] }}" />
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="card mt-3">
+          <div class="card-body">
+              <div class="row">
+                <div class="mb-3 col-md-6">
+                  <label for="bank_name" class="form-label">Bank Name</label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="bank_name"
+                    name="bank_name"
+                    value="{{ $user['bank_name'] }}"
+                  />
+                </div>
+                <div class="mb-3 col-md-6">
+                  <label for="bank_account_number" class="form-label">Bank Account Number</label>
+                  <input class="form-control" type="text" name="bank_account_number" id="bank_account_number" value="{{ $user['bank_account_number'] }}" />
+                </div>
+                <div class="mb-3 col-md-12">
+                  <label for="bank_account_name" class="form-label">Bank Account Name</label>
+                  <input class="form-control" type="text" name="bank_account_name" id="bank_account_name" value="{{ $user['bank_account_name'] }}" />
+                </div>
+                <div class="mb-3 col-md-6">
+                  <a href="{{ $user['file_ktp'] }}" class="btn btn-primary btn-block">KTP</a>
+                  <a href="{{ $user['file_pks'] }}" class="btn btn-primary btn-block">PKS</a>
+                </div>
+              </div>
+            </div>
+        </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="my-3">
+      <button class="btn btn-primary"><i class='bx bx-credit-card-alt'></i>Funding Balance</button>
+      <a href="/lender/export/funding_balance" class="btn btn-primary"><i class='bx bx-spreadsheet'></i>Export</a>
+      <a href="/lender/print/funding_balance" class="btn btn-primary"><i class='bx bx-printer' ></i>PDF/Print</a>
+    </div>
+      <div class="card mb-4">
+        <button id="loading" class="btn btn-primary d-none" type="button">
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Loading...
+        </button>
+        <div class="card-body">
+          <div class="table-responsive text-nowrap" id="dataTable">
+          
+          </div>
+        </div>
+    </div>
+    </div>
+</div>
 @endsection
 @push('js')
     <script type="text/javascript">
       $(document).ready(function() {
-        setTimeout(() => {
-          $('#loading').hide();
-          $('#dataTable').removeClass('d-none');
-        }, 1000);
+        loadTable();
       });
+
+      async function loadTable()
+      {
+        var param = {
+          url: '{{ url()->current() }}',
+          method: 'GET',
+          data: {
+            load: 'table'
+          }
+        }
+
+        loading(true);
+        await transAjax(param).then((result) => {
+          loading(false)
+          $('#dataTable').html(result);
+        }).catch((err) => {
+          loading(false);
+          return alert(err.message)
+        });
+      }
+
+      function loading(state)
+      {
+        if(state) {
+          $('#loading').removeClass('d-none');
+        }else{
+          $('#loading').addClass('d-none');
+        }
+      }
+
+      //update acount
+      $('#formUpdateAccount').submit(async function(e) {
+        e.preventDefault();
+
+        var param = {
+          url: '/lender/update_account',
+          method: 'POST',
+        }
+
+        await transAjax(param).then((result) => {
+          $('#notif').html(`<div class="alert alert-warning">Data Has been updated</div>`);
+        }).catch((err) => {
+          return alert(err);
+        });
+      })
     </script>
 @endpush

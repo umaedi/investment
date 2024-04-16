@@ -5,10 +5,23 @@
     .title {
       font-size: 18px;
     }
+    .filter-transaction {
+      gap: 3px;
+    }
+    .current-transaction {
+      width: 50%;
+    }
+    .since-exsist {
+      width: 50%;
+    }
+    
   }
   @media (max-width: 768px) {
     .hero-title {
         font-size: 16pxs;
+    }
+    .filter-transaction {
+      gap: 3px;
     }
   }
   @media (min-width: 992px) {

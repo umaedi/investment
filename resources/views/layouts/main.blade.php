@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
     <title>{{ $title ?? 'Dashboard Investor Duluin' }}</title>
-    <meta name="description" content="" />
+    <meta name="description" content="Dashboard Investor Duluin" />
     <link rel="icon" type="image/x-icon" href="{{ asset('img') }}/favicon/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,11 +14,11 @@
     <link rel="stylesheet" href="{{ asset('vendor') }}/css/theme-default.css" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="{{ asset('css') }}/demo.css" />
     <link rel="stylesheet" href="{{ asset('css') }}/responsive.css" />
-    <link rel="stylesheet" href="{{ asset('vendor') }}/libs/perfect-scrollbar/perfect-scrollbar.css" />
-    <link rel="stylesheet" href="{{ asset('vendor') }}/libs/apex-charts/apex-charts.css" />
-    <link rel="stylesheet" href="{{ asset('css') }}/placeholder-loading.min.css">
-    <script src="{{ asset('vendor') }}/js/helpers.js"></script>
     <script src="{{ asset('js') }}/config.js"></script>
+    <link rel="stylesheet" href="{{ asset('vendor') }}/libs/apex-charts/apex-charts.css" />
+    {{-- <link rel="stylesheet" href="{{ asset('vendor') }}/libs/perfect-scrollbar/perfect-scrollbar.css" /> --}}
+    {{-- <link rel="stylesheet" href="{{ asset('css') }}/placeholder-loading.min.css"> --}}
+    {{-- <script src="{{ asset('vendor') }}/js/helpers.js"></script> --}}
   </head>
 
   <body>
@@ -26,7 +26,7 @@
       <div class="layout-container">
         {{-- @include('layouts.sidebar') --}}
         <div class="layout-page">
-          @include('layouts.navbar')
+          {{-- @include('layouts.navbar') --}}
           <div class="content-wrapper">
             @yield('content')
             @include('layouts.footer')
@@ -36,15 +36,16 @@
       </div>
       <div class="layout-overlay layout-menu-toggle"></div>
     </div>
+    <script src="https://unpkg.com/swup@4"></script>
     <script src="{{ asset('vendor') }}/libs/jquery/jquery.js"></script>
-    <script src="{{ asset('vendor') }}/libs/popper/popper.js"></script>
     <script src="{{ asset('vendor') }}/js/bootstrap.js"></script>
-    <script src="{{ asset('vendor') }}/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="{{ asset('vendor') }}/js/menu.js"></script>
     <script src="{{ asset('vendor') }}/libs/apex-charts/apexcharts.js"></script>
     <script src="{{ asset('js') }}/main.js"></script>
     <script src="{{ asset('js') }}/dashboards-analytics.js"></script>
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    {{-- <script src="{{ asset('vendor') }}/libs/popper/popper.js"></script> --}}
+    {{-- <script src="{{ asset('vendor') }}/libs/perfect-scrollbar/perfect-scrollbar.js"></script> --}}
+    {{-- <script src="{{ asset('vendor') }}/js/menu.js"></script> --}}
+    {{-- <script async defer src="https://buttons.github.io/buttons.js"></script> --}}
     <script type="text/javascript">
       async function transAjax(data) {
         html = null;

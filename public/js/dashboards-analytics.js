@@ -315,13 +315,13 @@
           }
         }
       },
-      colors: [config.colors.primary],
+      colors: [config.colors.success],
       fill: {
         type: 'gradient',
         gradient: {
           shade: 'dark',
           shadeIntensity: 0.5,
-          gradientToColors: [config.colors.primary],
+          gradientToColors: [config.colors.success],
           inverseColors: true,
           opacityFrom: 1,
           opacityTo: 0.6,
@@ -494,11 +494,11 @@
     incomeChartConfig = {
       series: [
         {
-          data: [24, 21, 30, 22, 42, 26, 35, 29]
+          data: [1, 10, 20, 30, 40, 50]
         }
       ],
       chart: {
-        height: 215,
+        height: 255,
         parentHeightOffset: 0,
         parentWidthOffset: 0,
         toolbar: {
@@ -536,7 +536,7 @@
           size: 7
         }
       },
-      colors: [config.colors.primary],
+      colors: [config.colors.warning],
       fill: {
         type: 'gradient',
         gradient: {
@@ -558,7 +558,7 @@
         }
       },
       xaxis: {
-        categories: ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+        categories: ['', '1 Bulan', '2 Bulan', '3 Bulan', '4 Bulan', '5 Bulan'],
         axisBorder: {
           show: false
         },
