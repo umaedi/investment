@@ -196,10 +196,10 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <div class="my-3">
-      <button class="btn btn-primary"><i class='bx bx-credit-card-alt'></i>Funding Balance</button>
-      <a href="/lender/export/funding_balance" class="btn btn-primary"><i class='bx bx-spreadsheet'></i>Export</a>
-      <a href="/lender/print/funding_balance" class="btn btn-primary"><i class='bx bx-printer' ></i>PDF/Print</a>
+        <div class="my-3">
+        <button class="btn btn-primary funding-balance"><i class='bx bx-credit-card-alt'></i>Funding Balance</button>
+        <a href="/lender/export/funding_balance" class="btn btn-primary"><i class='bx bx-spreadsheet'></i>Export</a>
+        <a href="/lender/print/funding_balance" class="btn btn-primary"><i class='bx bx-printer' ></i>PDF/Print</a>
     </div>
       <div class="card mb-4">
         <button id="loading" class="btn btn-primary d-none" type="button">

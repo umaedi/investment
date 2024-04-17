@@ -14,6 +14,11 @@
     .since-exsist {
       width: 50%;
     }
+
+    .funding-balance {
+      width: 100%;
+      margin-bottom: 5px;
+    }
     
   }
   @media (max-width: 768px) {
