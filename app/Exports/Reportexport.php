@@ -22,8 +22,8 @@ class Reportexport implements FromView
 
     public function view(): View
     {
-        return view('dashboard._data_table_report', [
-            'table' => $this->report
+        return view('dashboard._data_table', [
+            'report_lender' => $this->report
         ]);
     }
 }
