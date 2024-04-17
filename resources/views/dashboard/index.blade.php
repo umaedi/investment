@@ -27,10 +27,10 @@
       </div>
       <div class="col-lg-8 mb-2 order-0">
         <div class="row">
-          <div class="col-6">
-            <button class="btn btn-primary w-100" id="currentTransaction">Current Transaction</button>
+          <div class="col-12 col-md-6">
+            <button class="btn btn-primary w-100 mb-3" id="currentTransaction">Current Transaction</button>
           </div>
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <button class="btn btn-primary w-100" id="sinceExist">Since Exist</button>
           </div>
         </div>

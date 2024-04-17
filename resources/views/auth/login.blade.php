@@ -9,12 +9,9 @@
               <span id="notif"></span>
               <div class="card-body">
                 <!-- Logo -->
-                <div class="app-brand justify-content-center">
-                  <a href="/" class="app-brand-link gap-2">
-                    <span class="app-brand-logo demo">
+                <div class="app-brand text-center">
+                  <a href="/">
                       <img src="{{ asset('img/logo/logo.webp') }}" alt="" width="50%">
-                    </span>
-                    <span class="app-brand-text demo text-body fw-bolder">Duluin</span>
                   </a>
                 </div>
                 <!-- /Logo -->
@@ -38,7 +35,7 @@
                     <div class="d-flex justify-content-between">
                       <label class="form-label" for="password">Password</label>
                       <a href="/lender/forgot-password">
-                        <small>Forgot Password?</small>
+                        <small>Forget Password?</small>
                       </a>
                     </div>
                     <div class="input-group input-group-merge">
