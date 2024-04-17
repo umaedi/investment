@@ -34,7 +34,7 @@
             <button class="btn btn-primary w-100" id="sinceExist">Since Exist</button>
           </div>
         </div>
-        <div class="row mt-3" id="rowCurrentTransaction">
+        <div class="row" id="rowCurrentTransaction">
           {{-- <h5>Current Transaction</h5> --}}
           <div class="col-lg-6">
             <div class="card mb-3" style="background-color: #ecba0b">
