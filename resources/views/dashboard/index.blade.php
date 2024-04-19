@@ -444,7 +444,7 @@
         fetch(scriptURL, { method: 'POST', body: new FormData(form)})
           .then(response => console.log('Success!', response))
           .catch(error => console.error('Error!', error.message))
-          swal({ title: 'Success', text: "SPK Berhasil dibuat, Silakan cek email Anda", icon: 'success' });
+          swal({ title: 'Success', text: "SPK Berhasil dibuat, Silakan cek email Anda secara berkala", icon: 'success' });
       })
 
       //simulate funding
