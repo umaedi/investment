@@ -1,32 +1,15 @@
-@forelse ($report_lender['data'] as $key => $rl)
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>No</th>
-      <th>Borrower Name</th>
-      <th>Loan Amount</th>
-      <th>Interest</th>
-      <th>Return</th>
-      <th>Margin</th>
-      <th>Repayment Date</th>
-      <th>Disbursed Date</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">{{ $key + 1 }}</th>
-      <td>{{ $rl['name'] }}</td>
-      <td>{{ $rl['invest_amount'] }}</td>
-      <td>{{ $rl['interest'] }}</td>
-      <td>{{ $rl['return_amount'] }}</td>
-      <td>{{ $rl['margin'] }}</td>
-      <td>{{ $rl['repayment_date'] }}</td>
-      <td>{{ $rl['disbursed_date'] }}</td>
-      <td><span class="badge {{ $rl['invest_status'] == 'disbursed' ? 'bg-warning' : 'bg-primary' }}">{{ $rl['invest_status'] }}</span></td>
-    </tr>
-  </tbody>
-</table>
+@forelse ($table['data'] as $key => $tb)
+<tr>
+  <th scope="row">{{ $key + 1 }}</th>
+  <td>{{ $tb['name'] }}</td>
+  <td>{{ $tb['invest_amount'] }}</td>
+  <td>{{ $tb['interest'] }}</td>
+  <td>{{ $tb['return_amount'] }}</td>
+  <td>{{ $tb['margin'] }}</td>
+  <td>{{ $tb['repayment_date'] }}</td>
+  <td>{{ $tb['disbursed_date'] }}</td>
+  <td><span class="badge {{ $tb['invest_status'] == 'disbursed' ? 'bg-warning' : 'bg-primary' }}">{{ $tb['invest_status'] }}</span></td>
+</tr>
 @empty
 <div class="col text-center">
   <div class="empty-img">

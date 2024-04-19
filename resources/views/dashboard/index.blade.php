@@ -37,7 +37,7 @@
         <div class="row" id="rowCurrentTransaction">
           {{-- <h5>Current Transaction</h5> --}}
           <div class="col-lg-6">
-            <div class="card mb-3" style="background-color: #ecba0b">
+            <div class="card mb-3 xmt-3" style="background-color: #ecba0b">
               <div class="row">
                 <div class="col-md-8">
                   <div class="card-body">
@@ -168,12 +168,11 @@
                   <input type="hidden" name="phone" value="085741492045">
                   <input type="hidden" name="email" value="umaedi@duluin.com">
 
-                  <button id="btnLoading" class="btn btn-warning mt-2 d-none" type="button" disabled>
+                  {{-- <button id="btnLoading" class="btn btn-warning mt-2 d-none" type="button" disabled>
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     Please wait...
-                  </button>
+                  </button> --}}
                   <button id="ceratespk" type="submit" class="btn btn-warning btn-block mt-2">CREATE SPK</button>
-                  <a href="https://drive.google.com/file/d/1VdhMGLTDCie3HLOqKq5plk5V63y98SQ4/view?usp=sharing" class="btn btn-warning btn-block mt-2">SHOW SPK</a>
                 </form>
               </div>
             </div>
@@ -299,9 +298,24 @@
         </div>
           <div class="card mt-3">
             <div class="card-body">
-              <div class="table-responsive text-nowrap" id="dataTable">
-          
-              </div>
+              <table class="table table-responsive text-nowrap table-bordered">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Borrower Name</th>
+                    <th>Loan Amount</th>
+                    <th>Interest</th>
+                    <th>Return</th>
+                    <th>Margin</th>
+                    <th>Repayment Date</th>
+                    <th>Disbursed Date</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="dataTable">
+                  
+                </tbody>
+              </table>
             </div>
           </div>
           <!--/ Bordered Table -->
@@ -354,6 +368,7 @@
 @endsection
 @push('js')
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+<script type="text/javascript" src="{{ asset('js/sweetalert.min.js') }}"></script>
     <script type="text/javascript">
       var month = '';
       var year = '';
@@ -419,16 +434,17 @@
       });
 
       //generate spk
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbzpNxyZRaOjjVHI96XakVi-OmkzLzW7aDEwRcPxpPEISbTZLzPPrxtp3OMvsKrAOyel/exec';
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbylhAkFGYn_uyT2pxLc3v7hgGYSBOPyxoQ3xi_64mQbf4KWJ6lLUI8wWrXNtNsAyRbG/exec';
       const form = document.forms['generateSpK']
 
       form.addEventListener('submit', e => {
         e.preventDefault()
-        $('#btnLoading').removeClass('d-none');
-        $('#ceratespk').addClass('d-none');
+        // $('#btnLoading').removeClass('d-none');
+        // $('#ceratespk').addClass('d-none');
         fetch(scriptURL, { method: 'POST', body: new FormData(form)})
           .then(response => console.log('Success!', response))
           .catch(error => console.error('Error!', error.message))
+          swal({ title: 'Success', text: "SPK Berhasil dibuat, Silakan cek email Anda", icon: 'success' });
       })
 
       //simulate funding

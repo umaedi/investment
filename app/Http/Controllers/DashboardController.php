@@ -25,7 +25,7 @@ class DashboardController extends Controller
                 'invest_status'    => $request->invest_status
             ];
             
-            $data['report_lender'] = $this->query('investor/report/lender', $params);
+            $data['table'] = $this->query('investor/report/lender', $params);
             return view('dashboard._data_table', $data);
         }
         $data['title'] = 'Dashboard Lender';

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use GuzzleHttp\Client;
+
 
 class ProfileController extends Controller
 {
@@ -18,7 +20,21 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
-        $params = $request->except('_token');
-        $response = $this->query(env('APP_SERVER_V1') . 'investor/form_account', $params);
+        $client = new Client();
+
+        $data = $request->except('_token', 'nik');
+        $token = $_COOKIE['access_token'];
+        $headers = [
+            'Authorization' => 'Bearer ' . $token,
+            'Content-Type' => 'application/json',
+        ];
+
+        $response = $client->post('https://dev.duluin.com/api/v1/investor/account/form_account', [
+            'headers' => $headers,
+            'json' => $data
+        ]);
+        dd($response->getBody());
+        // $response = $this->query('investor/account/form_account', $params);
+        // return $this->success($response);
     }
 }

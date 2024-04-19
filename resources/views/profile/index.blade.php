@@ -254,14 +254,20 @@
       $('#formUpdateAccount').submit(async function(e) {
         e.preventDefault();
 
+        var data = new FormData(this);
         var param = {
           url: '/lender/update_account',
           method: 'POST',
+          data: data,
+          processData: false,
+          contentType: false,
+          cache: false
         }
 
         await transAjax(param).then((result) => {
           $('#notif').html(`<div class="alert alert-warning">Data Has been updated</div>`);
         }).catch((err) => {
+          console.log(err);
           return alert(err);
         });
       })
