@@ -102,7 +102,7 @@
                   <div class="card-body">
                     <h5 class="card-title text-white">Total Transaction</h5>
                     <p class="card-text text-white">
-                      {{ formatRp($static_report['since_exist']['total_transaction']) }}
+                      {{ $static_report['since_exist']['total_transaction'] }}
                     </p>
                   </div>
                 {{-- </div>
