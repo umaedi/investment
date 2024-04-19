@@ -151,7 +151,7 @@
                   </div>
                   <div class="form-group">
                     <label for="" class="text-white">Periode Amount</label>
-                    <select name="periode" class="form-control" id="">
+                    <select name="periode" class="form-select" id="">
                       <option value="3">3</option>
                       <option value="6">6</option>
                       <option value="12">12</option>
@@ -235,7 +235,7 @@
             <div class="row filter-transaction">
               <div class="col-md-2">
                 <select class="form-select" id="month">
-                  <option value="">--select month--</option>
+                  {{-- <option value="">--select month--</option> --}}
                   <option value="01">January</option>
                   <option value="02">February</option>
                   <option value="03">March</option>
@@ -252,7 +252,7 @@
               </div>
               <div class="col-md-2">
                 <select class="form-select" id="year">
-                  <option value="">--status year--</option>
+                  {{-- <option value="">--status year--</option> --}}
                   @php
                   $tahun_sekarang = date('Y');
                   $tahun_mulai = 2024;
@@ -266,7 +266,7 @@
               </div>
               <div class="col-md-2">
                 <select class="form-select" id="page" name="length">
-                  <option value="">--perpage--</option>
+                  {{-- <option value="">--perpage--</option> --}}
                   <option value="10">10</option>
                   <option value="25">25</option>
                   <option value="50">50</option>
@@ -274,7 +274,7 @@
               </div>
               <div class="col-md-2">
                 <select class="form-select" name="invest_status" id="status">
-                  <option value="">--status--</option>
+                  {{-- <option value="">--status--</option> --}}
                   <option value="">Show All Status</option>
                   <option value="disbursed">Disbursed</option>
                   <option value="repayment">Repayment</option>
@@ -330,11 +330,11 @@
             <div class="card-body">
               <div class="form-group">
                 <label for="">Min Funding</label>
-                <input type="number" id="minFund" class="form-control" value="50000000" min="50000000">
+                <input onchange="updateNominal()" type="number" id="minFund" class="form-control" value="50000000" min="50000000">
               </div>
               <div class="form-group mt-3">
                 <label for="">Periode</label>
-                <select id="period" name="periode" class="form-control" id="">
+                <select id="period" name="periode" class="form-select" id="">
                   <option value="3">3</option>
                   <option value="6">6</option>
                   <option value="12">12</option>
@@ -476,6 +476,11 @@
       let investmentReturn = calculateInvestmentReturn(minFund, rate, period);
       document.getElementById("result").innerText = investmentReturn - minFund;
       document.getElementById("monthx").innerText = '/' + period + ' Month';
+
+      function updateNominal()
+      {
+        console.log('ok');
+      }
 });
 </script>
 @endpush
