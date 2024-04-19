@@ -9,13 +9,13 @@
               <span id="notif"></span>
               <div class="card-body">
                 <!-- Logo -->
-                <div class="app-brand text-center">
+                {{-- <div class="app-brand text-center">
                   <a href="/">
                       <img src="{{ asset('img/logo/logo.webp') }}" alt="" width="50%">
                   </a>
-                </div>
+                </div> --}}
                 <!-- /Logo -->
-                <h4 class="mb-2">Welcome to Duluin! 👋</h4>
+                <h4 class="mb-2">Welcome Lender! 👋</h4>
                 <p class="mb-4">Please sign-in to your account and start the adventure</p>
   
                 <form id="formAuthentication" class="mb-3">

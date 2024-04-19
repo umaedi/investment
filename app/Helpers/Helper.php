@@ -2,6 +2,18 @@
 
 use Illuminate\Support\Facades\Http;
 
+if(!function_exists('formatRp')) {
+function formatRp($number) {
+    return 'Rp ' . number_format($number, 0, ',', '.');
+    }
+}
+
+if(!function_exists('masking')) {
+    function masking($name) {
+        return substr($name, 0, 2) . str_repeat('*', strlen($name) - 2);
+    }
+}
+
 if (!function_exists('saveLogs')) {
     function saveLogs($description, $logType, $status)
     {

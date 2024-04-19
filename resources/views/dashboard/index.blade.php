@@ -43,7 +43,7 @@
                   <div class="card-body">
                     <h5 class="card-title text-white">Total Investment </h5>
                     <p class="card-text text-white">
-                      Rp. {{ $static_report['current']['total_investment'] }}
+                      {{ formatRp($static_report['current']['total_investment']) }}
                     </p>
                   </div>
                 </div>
@@ -57,7 +57,7 @@
                   <div class="card-body">
                     <h5 class="card-title text-white">Loan Project</h5>
                     <p class="card-text text-white">
-                      Rp. {{ $static_report['current']['loan_project'] }}
+                      {{ formatRp($static_report['current']['loan_project']) }}
                     </p>
                   </div>
                 </div>
@@ -85,7 +85,7 @@
                   <div class="card-body">
                     <h5 class="card-title text-white">Amount Available</h5>
                     <p class="card-text text-white">
-                      Rp. {{ $static_report['current']['avalaible_amount'] }}
+                      {{ formatRp($static_report['current']['avalaible_amount']) }}
                     </p>
                   </div>
                 </div>
@@ -102,7 +102,7 @@
                   <div class="card-body">
                     <h5 class="card-title text-white">Total Transaction</h5>
                     <p class="card-text text-white">
-                      Rp. {{ $static_report['since_exist']['total_transaction'] }}
+                      {{ formatRp($static_report['since_exist']['total_transaction']) }}
                     </p>
                   </div>
                 {{-- </div>
@@ -116,7 +116,7 @@
                   <div class="card-body">
                     <h5 class="card-title text-white">Total Amount</h5>
                     <p class="card-text text-white">
-                      Rp. {{ $static_report['since_exist']['total_amount'] }}
+                      {{ formatRp($static_report['since_exist']['total_amount']) }}
                     </p>
                   </div>
                 {{-- </div>
@@ -130,7 +130,7 @@
                   <div class="card-body">
                     <h5 class="card-title text-white">Total Return</h5>
                     <p class="card-text text-white">
-                      Rp. {{ $static_report['since_exist']['total_return'] }}
+                      {{ formatRp($static_report['since_exist']['total_return']) }}
                     </p>
                   </div>
                 {{-- </div>
@@ -150,18 +150,21 @@
                     <input type="number" name="nominal" class="form-control">
                   </div>
                   <div class="form-group">
-                    <label for="" class="text-white">Periode Amount
-                    </label>
-                    <input type="number" name="period" class="form-control">
+                    <label for="" class="text-white">Periode Amount</label>
+                    <select name="periode" class="form-control" id="">
+                      <option value="3">3</option>
+                      <option value="6">6</option>
+                      <option value="12">12</option>
+                    </select>
                   </div>
                   <input type="hidden" name="no agreement" value="018/LENDER/02/2024">
-                  <input type="hidden" name="tanggal perjanjian" value="4 April 2024">
+                  <input type="hidden" name="tanggal perjanjian" value="{{ date('D M Y') }}">
                   <input type="hidden" name="NAME" value="UMAEDI KH">
                   <input type="hidden" name="Name Proper" value="umaedi">
                   <input type="hidden" name="NIK" value="123456789123456">
                   <input type="hidden" name="alamat" value="Way Kanan">
                   <input type="hidden" name="terbilang" value="Lima Puluh Juta">
-                  <input type="hidden" name="tanggal investment" value="4 April 2024">
+                  <input type="hidden" name="tanggal investment" value="{{ date('D M Y') }}">
                   <input type="hidden" name="no rekening" value="12345">
                   <input type="hidden" name="nama bank" value="BRI">
                   <input type="hidden" name="nama rekening" value="UMAEDI">
@@ -172,14 +175,14 @@
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     Please wait...
                   </button> --}}
-                  <button id="ceratespk" type="submit" class="btn btn-warning btn-block mt-2">CREATE SPK</button>
+                  <button id="ceratespk" type="submit" class="btn btn-warning btn-block mt-2">Create Agreement</button>
                 </form>
               </div>
             </div>
         </div>
       </div>
       <!-- Financial Statment -->
-      <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2 my-3">
+      {{-- <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2 my-3">
         <div class="card">
           <div class="row row-bordered g-0">
             <div class="col-md-8">
@@ -223,7 +226,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> --}}
       <!-- Financial Statment end-->
       <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2 mb-4">
         <div class="card">
@@ -331,7 +334,11 @@
               </div>
               <div class="form-group mt-3">
                 <label for="">Periode</label>
-                <input type="number" id="period" value="1" class="form-control" value="1">
+                <select id="period" name="periode" class="form-control" id="">
+                  <option value="3">3</option>
+                  <option value="6">6</option>
+                  <option value="12">12</option>
+                </select>
               </div>
             </div>
             <button id="calculateBtn" class="btn btn-primary btn-block mt-3">Simulate</button>
@@ -352,6 +359,7 @@
                           <small class="text-muted d-block">Profit</small>
                           <div class="d-flex align-items-center">
                             <h6 class="mb-0 me-1" id="result"></h6>
+                            <h6 class="mb-0 me-1" id="monthx"></h6>
                         </div>
                       </div>
                     </div>
@@ -457,15 +465,17 @@
       let minFund = 50000000;
       let rate = 0.015;
       let period = parseFloat(document.getElementById("period").value);
-
+      
+      
       $('#profit').removeClass('d-none');
-        confetti({
-          particleCount: 150,
-          spread: 60
+      confetti({
+        particleCount: 150,
+        spread: 60
       });
-
+      
       let investmentReturn = calculateInvestmentReturn(minFund, rate, period);
       document.getElementById("result").innerText = investmentReturn - minFund;
+      document.getElementById("monthx").innerText = '/' + period + ' Month';
 });
 </script>
 @endpush

@@ -1,11 +1,11 @@
 @forelse ($table['data'] as $key => $tb)
 <tr>
   <th scope="row">{{ $key + 1 }}</th>
-  <td>{{ $tb['name'] }}</td>
-  <td>{{ $tb['invest_amount'] }}</td>
+  <td>{{ masking($tb['name']) }}</td>
+  <td>{{ formatRp($tb['invest_amount']) }}</td>
   <td>{{ $tb['interest'] }}</td>
-  <td>{{ $tb['return_amount'] }}</td>
-  <td>{{ $tb['margin'] }}</td>
+  <td>{{ formatRp($tb['return_amount']) }}</td>
+  <td>{{ formatRp($tb['margin']) }}</td>
   <td>{{ $tb['repayment_date'] }}</td>
   <td>{{ $tb['disbursed_date'] }}</td>
   <td><span class="badge {{ $tb['invest_status'] == 'disbursed' ? 'bg-warning' : 'bg-primary' }}">{{ $tb['invest_status'] }}</span></td>

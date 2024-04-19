@@ -558,7 +558,7 @@
         }
       },
       xaxis: {
-        categories: ['', '1 Bulan', '2 Bulan', '3 Bulan', '4 Bulan', '5 Bulan'],
+        categories: ['', '3 Bulan', '6 Bulan', '12 Bulan'],
         axisBorder: {
           show: false
         },
