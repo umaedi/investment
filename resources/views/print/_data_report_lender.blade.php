@@ -1,38 +1,38 @@
 @extends('layouts.print')
 @section('content')
-@forelse ($table['data'] as $key => $rl)
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th>NO</th>
-      <th>BORROWER NAME</th>
-      <th>LOAN AMOUNT</th>
-      <th>INTREST</th>
-      <th>RETURN</th>
-      <th>MARGIN</th>
-      <th>REPAYMENT DATE</th>
-      <th>DISBURSED DATE</th>
-      <th>STATUS</th>
+      <th>No</th>
+      <th>Borrower Name</th>
+      <th>Loan Amount</th>
+      <th>Interest</th>
+      <th>Return</th>
+      <th>Margin</th>
+      <th>Repayment Date</th>
+      <th>Disbursed Date</th>
+      <th>Status</th>
     </tr>
   </thead>
   <tbody>
+    @forelse ($table['data'] as $key => $rl)
     <tr>
       <th scope="row">{{ $key + 1 }}</th>
-      <td>{{ $rl['name'] }}</td>
-      <td>{{ $rl['invest_amount'] }}</td>
+      <td>{{ masking($rl['name']) }}</td>
+      <td>{{ formatRp($rl['invest_amount']) }}</td>
       <td>{{ $rl['interest'] }}</td>
-      <td>{{ $rl['return_amount'] }}</td>
-      <td>{{ $rl['margin'] }}</td>
+      <td>{{ formatRp($rl['return_amount']) }}</td>
+      <td>{{ formatRp($rl['margin']) }}</td>
       <td>{{ $rl['repayment_date'] }}</td>
       <td>{{ $rl['disbursed_date'] }}</td>
       <td>{{ $rl['invest_status'] }}</td>
     </tr>
+    @empty
   </tbody>
 </table>
-@empty
 <div class="col text-center">
   <div class="empty-img">
-      <svg  style="width: 96px; height: 96px" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-database-off" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <svg  style="width: 96px; height: 96px" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-database-off" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
           <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
           <path d="M12.983 8.978c3.955 -.182 7.017 -1.446 7.017 -2.978c0 -1.657 -3.582 -3 -8 -3c-1.661 0 -3.204 .19 -4.483 .515m-2.783 1.228c-.471 .382 -.734 .808 -.734 1.257c0 1.22 1.944 2.271 4.734 2.74"></path>
           <path d="M4 6v6c0 1.657 3.582 3 8 3c.986 0 1.93 -.067 2.802 -.19m3.187 -.82c1.251 -.53 2.011 -1.228 2.011 -1.99v-6"></path>

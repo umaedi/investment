@@ -1,6 +1,5 @@
 @extends('layouts.print')
 @section('content')    
-@forelse ($table['data'] as $key => $adb)
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -15,6 +14,7 @@
     </tr>
   </thead>
   <tbody>
+    @forelse ($table['data'] as $key => $adb)
     <tr>
       <th scope="row">{{ $key + 1 }}</th>
       <td>{{ $adb['transaction_date'] }}</td>
@@ -25,9 +25,9 @@
       <td>{{ $adb['close_balance'] }}</td>
       <td>{{ $adb['description'] }}</td>
     </tr>
+    @empty
   </tbody>
 </table>
-@empty
 <div class="col text-center">
   <div class="empty-img">
       <svg  style="width: 96px; height: 96px" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-database-off" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">

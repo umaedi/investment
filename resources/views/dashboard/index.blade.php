@@ -160,7 +160,7 @@
 
                   <input type="hidden" name="no agreement" value="018/LENDER/02/2024">
                   <input type="hidden" name="tanggal perjanjian" value="{{ date('D M Y') }}">
-                  <input type="hidden" name="name" value="UMAEDI KH">
+                  <input type="hidden" name="NAME" value="UMAEDI KH">
                   <input type="hidden" name="Name Proper" value="umaedi">
                   <input type="hidden" name="NIK" value="123456789123456">
                   <input type="hidden" name="alamat" value="Way Kanan">
@@ -440,7 +440,7 @@
       });
 
       //generate spk
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbzK6oM03XBC77eqGj_Hsivt2kaJCHMy-5p5CngGHeUtcvSbfHUMQeaFVO9D0ucBXsMP/exec';
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbyyJSyoaZ6XEOrzrlHBnU1nd1zXpYTO6iEtAeW2T_p-NMwdQstewQfjEKodPf6uCm6C/exec';
       const form = document.forms['generateSpK']
 
       form.addEventListener('submit', e => {
