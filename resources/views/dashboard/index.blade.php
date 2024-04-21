@@ -71,7 +71,7 @@
                   <div class="card-body">
                     <h5 class="card-title text-white">Total transactions</h5>
                     <p class="card-text text-white">
-                      300
+                      {{ $static_report['since_exist']['total_transaction'] }}
                     </p>
                   </div>
                 </div>
@@ -100,7 +100,7 @@
               {{-- <div class="row g-0">
                 <div class="col-md-8"> --}}
                   <div class="card-body">
-                    <h5 class="card-title text-white">Total Transaction</h5>
+                    <h5 class="card-title text-white">Total Transactions</h5>
                     <p class="card-text text-white">
                       {{ $static_report['since_exist']['total_transaction'] }}
                     </p>
@@ -147,7 +147,7 @@
                   <div class="form-group mb-2">
                     <label for="" class="text-white">Amount Investment
                     </label>
-                    <input type="number" name="nominal" class="form-control">
+                    <input type="text" name="nominal" class="form-control" onkeyup="addfundInvesment(this)">
                   </div>
                   <div class="form-group">
                     <label for="" class="text-white">Periode Amount</label>
@@ -157,9 +157,10 @@
                       <option value="12">12</option>
                     </select>
                   </div>
+
                   <input type="hidden" name="no agreement" value="018/LENDER/02/2024">
                   <input type="hidden" name="tanggal perjanjian" value="{{ date('D M Y') }}">
-                  <input type="hidden" name="NAME" value="UMAEDI KH">
+                  <input type="hidden" name="name" value="UMAEDI KH">
                   <input type="hidden" name="Name Proper" value="umaedi">
                   <input type="hidden" name="NIK" value="123456789123456">
                   <input type="hidden" name="alamat" value="Way Kanan">
@@ -170,11 +171,6 @@
                   <input type="hidden" name="nama rekening" value="UMAEDI">
                   <input type="hidden" name="phone" value="085741492045">
                   <input type="hidden" name="email" value="umaedi@duluin.com">
-
-                  {{-- <button id="btnLoading" class="btn btn-warning mt-2 d-none" type="button" disabled>
-                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                    Please wait...
-                  </button> --}}
                   <button id="ceratespk" type="submit" class="btn btn-warning btn-block mt-2">Create Agreement</button>
                 </form>
               </div>
@@ -301,7 +297,8 @@
         </div>
           <div class="card mt-3">
             <div class="card-body">
-              <table class="table table-responsive text-nowrap table-bordered">
+              <div class="table-responsive text-nowrap">
+              <table class="table table-bordered">
                 <thead>
                   <tr>
                     <th>No</th>
@@ -319,6 +316,7 @@
                   
                 </tbody>
               </table>
+              </div>
             </div>
           </div>
           <!--/ Bordered Table -->
@@ -330,7 +328,7 @@
             <div class="card-body">
               <div class="form-group">
                 <label for="">Min Funding</label>
-                <input onchange="updateNominal()" type="number" id="minFund" class="form-control" value="50000000" min="50000000">
+                <input type="text" id="minFund" class="form-control" min="50000000" onkeyup="formatRupiah(this)">
               </div>
               <div class="form-group mt-3">
                 <label for="">Periode</label>
@@ -442,7 +440,7 @@
       });
 
       //generate spk
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbylhAkFGYn_uyT2pxLc3v7hgGYSBOPyxoQ3xi_64mQbf4KWJ6lLUI8wWrXNtNsAyRbG/exec';
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbyGM0oeFOd7Z9Pz5rcx7jbj3lwfe0-QMz8y6bdaCWe6y1SHeVHdPmerD7e_fx9XMvmU/exec';
       const form = document.forms['generateSpK']
 
       form.addEventListener('submit', e => {
@@ -454,6 +452,27 @@
           .catch(error => console.error('Error!', error.message))
           swal({ title: 'Success', text: "SPK Berhasil dibuat, Silakan cek email Anda secara berkala", icon: 'success' });
       })
+
+      const rupiah = (number) => {
+      const formattedNumber = new Intl.NumberFormat("id-ID", {
+        style: "currency",
+        currency: "IDR",
+      }).format(number);
+        return formattedNumber.split(",")[0]; // Mengambil bagian pertama sebelum tanda koma
+      };
+
+      function addfundInvesment(input)
+      {
+        const value = input.value.replace(/\D/g, "");
+        input.value = rupiah(value);
+      }
+
+      let minFund = 50000000;
+      document.getElementById('minFund').value = rupiah(minFund);
+      function formatRupiah(input) {
+        const value = input.value.replace(/\D/g, ""); // Menghapus karakter non-digit
+        input.value = rupiah(value); // Memformat nilai dan memperbarui nilai input
+      }
 
       //simulate funding
       function calculateInvestmentReturn(minFund, rate, period) {
@@ -474,13 +493,8 @@
       });
       
       let investmentReturn = calculateInvestmentReturn(minFund, rate, period);
-      document.getElementById("result").innerText = investmentReturn - minFund;
+      document.getElementById("result").innerText = rupiah(investmentReturn - minFund);
       document.getElementById("monthx").innerText = '/' + period + ' Month';
-
-      function updateNominal()
-      {
-        console.log('ok');
-      }
 });
 </script>
 @endpush

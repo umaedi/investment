@@ -23,34 +23,21 @@ function doPost (e) {
     var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0]
     var nextRow = sheet.getLastRow() + 1
 
-    var newRow = headers.map(function(header) {
+    var row = headers.map(function(header) {
       return header === 'timestamp' ? new Date() : e.parameter[header]
     })
 
-    sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow])
-
-    //generate pdf
-    // Nilai ini seharusnya merupakan id dari template dokumen Anda yang telah dibuat pada langkah terakhir
-  const googleDocTemplate = DriveApp.getFileById('1kCB2FzgVuwJMIylAscm56hgn_j7gbGpK20wcr0cm0AQ');
-
-  // Nilai ini seharusnya merupakan id dari folder tempat dokumen yang selesai dibuat akan disimpan
-  const destinationDocFolder = DriveApp.getFolderById('1gkFdn5uqggyatPAtun1frhqRF-HhJxFJ');
-  const destinationPdfFolder = DriveApp.getFolderById('1aiTP5c7qYMCGT8iRU9T4CNKxBa_ceqVP');
+    sheet.getRange(nextRow, 1, 1, row.length).setValues([row])
   
-  // Di sini kita menyimpan lembar sebagai variabel
-  const sheetx = SpreadsheetApp
-    .getActiveSpreadsheet()
-    .getSheetByName('Generated')
-  // Sekarang kita dapatkan semua nilai sebagai array 2D
-  const rows = sheetx.getDataRange().getValues();
-  // Mulai memproses setiap baris spreadsheet
-  rows.forEach(function(row, index){
-    // Di sini kita memeriksa apakah baris ini adalah header, jika ya kita lewati
-    if (index === 0) return;
-    // Di sini kita memeriksa apakah dokumen sudah dibuat dengan melihat 'Document Link', jika ya kita lewati
-    if (row[16]) return;
+    const googleDocTemplate = DriveApp.getFileById('1kCB2FzgVuwJMIylAscm56hgn_j7gbGpK20wcr0cm0AQ');
+
+    // Nilai ini seharusnya merupakan id dari folder tempat dokumen yang selesai dibuat akan disimpan
+    const destinationDocFolder = DriveApp.getFolderById('1gkFdn5uqggyatPAtun1frhqRF-HhJxFJ');
+    const destinationPdfFolder = DriveApp.getFolderById('1aiTP5c7qYMCGT8iRU9T4CNKxBa_ceqVP');
+
     // Menggunakan data baris dalam template literal, kita membuat salinan dokumen template kita di folder tujuan
     const copyDoc = googleDocTemplate.makeCopy(`${row[0]} - ${row[2]} - Duluin Gajian` , destinationDocFolder);
+
     // Setelah kita memiliki salinannya, kita kemudian membukanya menggunakan DocumentApp
     const docx = DocumentApp.openById(copyDoc.getId());
     // Semua konten berada di dalam body, jadi kita dapatkan itu untuk diedit
@@ -94,14 +81,11 @@ function doPost (e) {
     // sheet.getRange(index + 1, 15).setValue(url);
     sheet.getRange(index + 1, 16).setValue(pdfUrl);
 
-    return ContentService
-      .createTextOutput(JSON.stringify({ 'result': 'success', 'row': pdfUrl }))
-      .setMimeType(ContentService.MimeType.JSON)
-  }) 
-
-    
+    var penerima = "umaedi@duluin.com";
+    var subject = "DULUIN-SPK-INVESTOR";
+    var isi = "Anda baru saja melakukan update SPK pada akun dashboard lender Anda" + pdfUrl;
+    MailApp.sendEmail(penerima, subject, isi);
   }
-
   catch (e) {
     return ContentService
       .createTextOutput(JSON.stringify({ 'result': 'error', 'error': e }))
