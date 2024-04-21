@@ -7,8 +7,8 @@
           <div class="d-flex align-items-end row">
             <div class="col-sm-7 hero-title">
               <div class="card-body">
-                <h3 class="card-title" style="color: #fff">Hallo Lender 👋</h3>
-                <p class="mb-4" style="color: #fff">
+                <h3 class="card-title" style="color: #fff">Welcome back👋</h3>
+                <p class="text-white">
                   Welcome to the Lender Financial Reporting Dashboard! We hope this dashboard serves as a useful tool for you in making informed and strategic decisions.
                 </p>
                 <a href="/lender/profile" class="btn btn-sm btn-light" style="color: #076759"><i class='bx bx-badge-check'></i>Member Pemula</a>
@@ -440,7 +440,7 @@
       });
 
       //generate spk
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbyGM0oeFOd7Z9Pz5rcx7jbj3lwfe0-QMz8y6bdaCWe6y1SHeVHdPmerD7e_fx9XMvmU/exec';
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbzK6oM03XBC77eqGj_Hsivt2kaJCHMy-5p5CngGHeUtcvSbfHUMQeaFVO9D0ucBXsMP/exec';
       const form = document.forms['generateSpK']
 
       form.addEventListener('submit', e => {

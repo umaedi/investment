@@ -81,9 +81,27 @@ function doPost (e) {
     // sheet.getRange(index + 1, 15).setValue(url);
     sheet.getRange(index + 1, 16).setValue(pdfUrl);
 
-    var penerima = "umaedi@duluin.com";
-    var subject = "DULUIN-SPK-INVESTOR";
-    var isi = "Anda baru saja melakukan update SPK pada akun dashboard lender Anda" + pdfUrl;
+    var penerima = row[14];
+    var subject = "Perjanjian Investasi";
+    var isi = 
+    `
+    Halo Bapak/Ibu PT Rasa Aksata Nusantara<br>
+    PT Rasa Aksata Nusantara telah mengirimkan Perjanjian Investasi untuk Anda, dengan rincian sebagai berikut:<br>
+    Nama :
+    Nominal :
+    Tanggal :
+    Periode : 
+
+    Realisasi penempatan melalui rekening : 
+    PT Rasa Aksata Nusantara
+    Bank : Bank Mandiri
+    Rekening : 1300003366880
+
+    Jika ada pertanyaan lebih lanjut, silakan menghubungi PT Rasa Aksata Nusantara di:
+    No. Telp: 08170031000
+
+    Terima kasih.
+    `;
     MailApp.sendEmail(penerima, subject, isi);
   }
   catch (e) {
