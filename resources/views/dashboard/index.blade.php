@@ -37,7 +37,7 @@
         <div class="row" id="rowCurrentTransaction">
           {{-- <h5>Current Transaction</h5> --}}
           <div class="col-lg-6">
-            <div class="card mb-3 xmt-3" style="background-color: #ecba0b">
+            <div class="card mb-3 xmt-3" style="background-color: #fa5d48">
               <div class="row">
                 <div class="col-md-8">
                   <div class="card-body">
@@ -51,7 +51,7 @@
             </div>
           </div>
           <div class="col-md-6">
-            <div class="card mb-3" style="background-color: #ecba0b">
+            <div class="card mb-3" style="background-color: #fa5d48">
               <div class="row g-0">
                 <div class="col-md-8">
                   <div class="card-body">
@@ -65,7 +65,7 @@
             </div>
           </div>
           <div class="col-md-6">
-            <div class="card mb-3" style="background-color: #ecba0b">
+            <div class="card mb-3" style="background-color: #fa5d48">
               <div class="row g-0">
                 <div class="col-md-8">
                   <div class="card-body">
@@ -79,7 +79,7 @@
             </div>
           </div>
           <div class="col-md-6">
-            <div class="card mb-3" style="background-color: #ecba0b">
+            <div class="card mb-3" style="background-color: #fa5d48">
               <div class="row g-0">
                 <div class="col-md-8">
                   <div class="card-body">
