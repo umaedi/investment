@@ -28,10 +28,10 @@
       <div class="col-lg-8 mb-2 order-0">
         <div class="row">
           <div class="col-12 col-md-6">
-            <button class="btn btn-primary w-100 mb-3" id="currentTransaction">Current Transaction</button>
+            <button class="btn btn-primary w-100 mb-3 fw-bold" style="font-size: 16px" id="currentTransaction">Current Transaction</button>
           </div>
           <div class="col-12 col-md-6">
-            <button class="btn btn-primary w-100" id="sinceExist">Since Exist</button>
+            <button class="btn btn-primary w-100 fw-bold" style="font-size: 16px" id="sinceExist">Since Exist</button>
           </div>
         </div>
         <div class="row" id="rowCurrentTransaction">
@@ -140,7 +140,7 @@
         </div>
         </div>
         <div class="col-lg-4">
-            <button class="btn btn-primary mb-3 w-100">Add Fund Investment</button>
+            <button class="btn btn-primary mb-3 w-100 fw-bold" style="font-size: 16px;">Add Fund Investment</button>
             <div class="card" style="background-color: #1a9988">
               <div class="card-body">
                 <form name="generateSpK">
