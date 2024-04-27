@@ -22,17 +22,22 @@ class ProfileController extends Controller
     {
         $client = new Client();
 
-        $data = $request->except('_token', 'nik');
+        $data = $request->only('email');
         $token = $_COOKIE['access_token'];
         $headers = [
             'Authorization' => 'Bearer ' . $token,
             'Content-Type' => 'application/json',
         ];
 
-        $response = $client->post('https://dev.duluin.com/api/v1/investor/account/form_account', [
-            'headers' => $headers,
-            'json' => $data
-        ]);
+        try {
+            $response = $client->post('https://dev.duluin.com/api/v1/investor/account/form_account', [
+                'headers' => $headers,
+                'body' => $data
+            ]);
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
+
         dd($response->getBody());
         // $response = $this->query('investor/account/form_account', $params);
         // return $this->success($response);

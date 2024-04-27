@@ -42,9 +42,9 @@
                 <div class="col-md-8">
                   <div class="card-body">
                     <h5 class="card-title text-white">Total Fund </h5>
-                    <p class="card-text text-white">
+                    <h3 class="card-text text-white fw-bold">
                       {{ formatRp($static_report['current']['total_investment']) }}
-                    </p>
+                    </h3>
                   </div>
                 </div>
               </div>
@@ -56,9 +56,9 @@
                 <div class="col-md-8">
                   <div class="card-body">
                     <h5 class="card-title text-white">Amount disbursed</h5>
-                    <p class="card-text text-white">
+                    <h3 class="card-text text-white">
                       {{ formatRp($static_report['current']['loan_project']) }}
-                    </p>
+                    </h3>
                   </div>
                 </div>
               </div>
@@ -70,9 +70,9 @@
                 <div class="col-md-8">
                   <div class="card-body">
                     <h5 class="card-title text-white">Total transactions</h5>
-                    <p class="card-text text-white">
+                    <h3 class="card-text text-white">
                       {{ $static_report['since_exist']['total_transaction'] }}
-                    </p>
+                    </h3>
                   </div>
                 </div>
               </div>
@@ -84,9 +84,9 @@
                 <div class="col-md-8">
                   <div class="card-body">
                     <h5 class="card-title text-white">Available fund</h5>
-                    <p class="card-text text-white">
+                    <h3 class="card-text text-white">
                       {{ formatRp($static_report['current']['avalaible_amount']) }}
-                    </p>
+                    </h3>
                   </div>
                 </div>
               </div>
