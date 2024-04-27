@@ -14,13 +14,12 @@ if(!function_exists('masking')) {
         $maskedName = '';
 
         foreach ($words as $word) {
-            $firstTwoChars = substr($word, 0, 2); // Mengambil 2 karakter pertama dari kata
-            $maskedPart = str_repeat('*', strlen($word) - 2); // Membuat string masker untuk sisanya
-            $maskedName .= $firstTwoChars . $maskedPart . ' '; // Menggabungkan hasil dengan spasi
+            $maskedPart = strlen($word) > 2 ? substr($word, 2) : ''; // Mengambil sisanya jika panjang kata lebih dari 2 karakter
+            $maskedName .= substr($word, 0, 2) . str_repeat('*', strlen($maskedPart)) . ' '; // Menggabungkan hasil dengan spasi
         }
 
         return $maskedName;
-        
+
         // $words = explode(" ", $name);
         // $firstWord = $words[0];
         // $second = end($words);
