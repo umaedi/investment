@@ -152,7 +152,7 @@
                   <div class="form-group mb-2">
                     <label for="" class="text-white">Spelled Out
                     </label>
-                    <input type="text" name="terbilang" class="form-control" value="Lima Puluh Juta">
+                    <input type="text" name="terbilang" class="form-control" value="Lima Puluh Juta Rupiah">
                   </div>
                   <div class="form-group">
                     <label for="" class="text-white">Period Month</label>
@@ -236,10 +236,10 @@
                 </select>
               </div>
               <div class="col-md-2 d-grid">
-                <a href="/lender/export/transction" target="_blank" class="btn btn-primary btn-block"><i class='bx bx-spreadsheet'></i>Export</a>
+                <a href="/lender/export/transction" target="_blank" class="btn btn-primary btn-block"><i class='bx bx-spreadsheet'></i> Export</a>
               </div>
               <div class="col-md-2 d-grid">
-                <a href="/lender/print/transction" class="btn btn-primary btn-block"><i class='bx bx-printer' ></i>PDF/Print</a>
+                <a href="/lender/print/transction" class="btn btn-primary btn-block"><i class='bx bx-printer' ></i> PDF/Print</a>
               </div>
             </div>
           </div>
@@ -429,7 +429,16 @@
 
       async function sendWhatsApp(response)
       {
-        console.log('ok');
+        var param = {
+          url: '/lender/send-whatsapp',
+          method: 'GET',
+        }
+
+        await transAjax(param).then((result) => {
+
+        }).catch((err) => {
+
+        });
       }
 
       const rupiah = (number) => {

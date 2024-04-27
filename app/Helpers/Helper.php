@@ -8,6 +8,12 @@ function formatRp($number) {
     }
 }
 
+if(!function_exists('persen')) {
+function persen($number) {
+    return $number * 100 . "%";
+    }
+}
+
 if(!function_exists('masking')) {
     function masking($name) {
         $words = explode(" ", $name); // Memecah string berdasarkan spasi

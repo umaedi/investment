@@ -3,7 +3,7 @@
   <th scope="row">{{ $key + 1 }}</th>
   <td>{{ masking($tb['name']) }}</td>
   <td>{{ formatRp($tb['invest_amount']) }}</td>
-  <td>{{ $tb['interest'] }}</td>
+  <td>{{ persen($tb['interest']) }}</td>
   <td>{{ formatRp($tb['return_amount']) }}</td>
   <td>{{ formatRp($tb['margin']) }}</td>
   <td>{{ date('d-m-Y', strtotime($tb['disbursed_date'])) }}</td>
