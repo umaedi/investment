@@ -125,8 +125,11 @@
                 </div>
               </div>
               <div class="mt-2">
-                <span id="notif"></span>
-                <button type="submit" class="btn btn-primary me-2">Save changes</button>
+                <button id="btnLoading" class="btn btn-primary d-none" type="button">
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  Please wait...
+                </button>
+                <button id="btnSubmit" type="submit" class="btn btn-primary me-2">Save changes</button>
                 <button type="reset" class="btn btn-outline-secondary">Reset</button>
               </div>
             </form>
@@ -216,6 +219,7 @@
 </div>
 @endsection
 @push('js')
+<script type="text/javascript" src="{{ asset('js/sweetalert.min.js') }}"></script>
     <script type="text/javascript">
       $(document).ready(function() {
         loadTable();
@@ -264,12 +268,31 @@
           cache: false
         }
 
+        loadingsubmit(true);
         await transAjax(param).then((result) => {
-          $('#notif').html(`<div class="alert alert-warning">Data Has been updated</div>`);
+          loadingsubmit(false);
+          swal({
+              text: result.message,
+              icon: 'success',
+              timer: 3000,
+          }).then(() => {
+              loadingsubmit(false);
+              window.location.href = '/lender/profile';
+          });
         }).catch((err) => {
-          console.log(err);
-          return alert(err);
+          swal({ title: 'Success', text: "Internal Server Error!", icon: 'error' });
         });
+
+        function loadingsubmit(state)
+        {
+          if(state) {
+            $('#btnLoading').removeClass('d-none');
+            $('#btnSubmit').addClass('d-none');
+          }else {
+            $('#btnLoading').addClass('d-none');
+            $('#btnSubmit').removeClass('d-none');
+          }
+        }
       })
     </script>
 @endpush

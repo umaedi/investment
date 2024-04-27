@@ -21,7 +21,6 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
-
         $token = $_COOKIE['access_token'];
         $data = $request->except('_token', 'nik');
         $response = Http::withHeaders([
