@@ -7,7 +7,7 @@
           <div class="d-flex align-items-end row">
             <div class="col-sm-7 hero-title">
               <div class="card-body">
-                <h3 class="card-title" style="color: #fff">Hello {{ $user['name'] }}</h3>
+                <h3 class="card-title fw-bold" style="color: #fff">Hello {{ $user['name'] }}</h3>
                 <p class="text-white">
                   Welcome to the Lender Financial Reporting Dashboard! We hope this dashboard serves as a useful tool for you in making informed and strategic decisions.
                 </p>
