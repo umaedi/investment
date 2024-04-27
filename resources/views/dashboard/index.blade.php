@@ -3,7 +3,7 @@
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
       <div class="col-lg-12 mb-4 order-0b">
-        <div class="card" style="background-color: #076759">
+        <div class="card" style="background-color: #1a9988">
           <div class="d-flex align-items-end row">
             <div class="col-sm-7 hero-title">
               <div class="card-body">
@@ -11,7 +11,7 @@
                 <p class="text-white">
                   Welcome to the Lender Financial Reporting Dashboard! We hope this dashboard serves as a useful tool for you in making informed and strategic decisions.
                 </p>
-                <a href="/lender/profile" class="btn btn-sm btn-light" style="color: #076759"><i class='bx bx-badge-check'></i>Member Pemula</a>
+                <a href="/lender/profile" class="btn btn-sm btn-light" style="color: #1a9988"><i class='bx bx-badge-check'></i>Member Pemula</a>
                 <a href="/lender/profile" class="btn btn-sm btn-warning" style="color: #fff"><i class="bx bx-user me-1"></i>My Profile</a>
               </div>
             </div>
@@ -141,7 +141,7 @@
         </div>
         <div class="col-lg-4">
             <button class="btn btn-primary mb-3 w-100">Add Fund Investment</button>
-            <div class="card" style="background-color: #076759">
+            <div class="card" style="background-color: #1a9988">
               <div class="card-body">
                 <form name="generateSpK">
                   <div class="form-group mb-2">
@@ -342,6 +342,17 @@
       var invest_status = '';
       $(document).ready(function() {
         loadTable();
+      });
+
+      $('#month').change(function() {
+         month = $('#month').val();
+         year = $('#year').val();
+         if(year == '') {
+          return alert('Please select year');
+         }
+         length = $('#page').val();
+         invest_status = $('#status').val();
+         loadTable();
       });
 
       $('#status').change(function() {
