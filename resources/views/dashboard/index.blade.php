@@ -266,8 +266,8 @@
                     <th>Interest</th>
                     <th>Return</th>
                     <th>Margin</th>
-                    <th>Repayment Date</th>
                     <th>Disbursed Date</th>
+                    <th>Repayment Date</th>
                     <th>Status</th>
                   </tr>
                 </thead>
