@@ -110,7 +110,7 @@
                     class="form-control"
                     id="gender"
                     name="gender"
-                    value="{{ $user['gender'] == 'L' ? 'Male' : 'Female' }}"
+                    value="{{ $user['gender']}}"
                   />
                 </div>
                 <div class="mb-3 col-md-3">

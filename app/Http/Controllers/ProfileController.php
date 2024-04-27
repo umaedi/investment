@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Http;
 
 
 class ProfileController extends Controller
@@ -20,26 +21,18 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
-        $client = new Client();
 
-        $data = $request->only('email');
         $token = $_COOKIE['access_token'];
-        $headers = [
+        $data = $request->except('_token', 'nik');
+        $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $token,
             'Content-Type' => 'application/json',
-        ];
-
-        try {
-            $response = $client->post('https://dev.duluin.com/api/v1/investor/account/form_account', [
-                'headers' => $headers,
-                'body' => $data
-            ]);
-        } catch (\Exception $e) {
-            dd($e->getMessage());
+        ])->post('https://dev.duluin.com/api/v1/investor/account/form_account', $data);
+        
+        if($response->successful()) {
+            return $this->success('OK', 'Data has been updated!');
+        }else {
+            return $this->error('Internal Server Error');
         }
-
-        dd($response->getBody());
-        // $response = $this->query('investor/account/form_account', $params);
-        // return $this->success($response);
     }
 }
