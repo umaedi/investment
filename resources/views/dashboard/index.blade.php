@@ -96,42 +96,42 @@
         <div class="row mt-3 d-none" id="rowSinceExist">
           {{-- <h5>Current Transaction</h5> --}}
           <div class="col-lg-4">
-            <div class="card mb-3" style="background-color: #ecba0b">
+            <div class="card mb-3" style="background-color: #fa5d48">
               {{-- <div class="row g-0">
                 <div class="col-md-8"> --}}
                   <div class="card-body">
                     <h5 class="card-title text-white">Total Transactions</h5>
-                    <p class="card-text text-white">
+                    <h3 class="card-text text-white">
                       {{ $static_report['since_exist']['total_transaction'] }}
-                    </p>
+                    </h3>
                   </div>
                 {{-- </div>
               </div> --}}
             </div>
           </div>
           <div class="col-md-4">
-            <div class="card mb-3" style="background-color: #ecba0b">
+            <div class="card mb-3" style="background-color: #fa5d48">
               {{-- <div class="row g-0">
                 <div class="col-md-8"> --}}
                   <div class="card-body">
                     <h5 class="card-title text-white">Total Amount</h5>
-                    <p class="card-text text-white">
+                    <h3 class="card-text text-white">
                       {{ formatRp($static_report['since_exist']['total_amount']) }}
-                    </p>
+                    </h3>
                   </div>
                 {{-- </div>
               </div> --}}
             </div>
           </div>
           <div class="col-md-4">
-            <div class="card mb-3" style="background-color: #ecba0b">
+            <div class="card mb-3" style="background-color: #fa5d48">
               {{-- <div class="row g-0">
                 <div class="col-md-8"> --}}
                   <div class="card-body">
                     <h5 class="card-title text-white">Total Return</h5>
-                    <p class="card-text text-white">
+                    <h3 class="card-text text-white">
                       {{ formatRp($static_report['since_exist']['total_return']) }}
-                    </p>
+                    </h3>
                   </div>
                 {{-- </div>
               </div> --}}
@@ -174,7 +174,7 @@
                   <input type="hidden" name="nama rekening" value="{{ $user['bank_account_name'] }}">
                   <input type="hidden" name="phone" value="{{ $user['phone_number'] }}">
                   <input type="hidden" name="email" value="{{ $user['email'] }}">
-                  <button id="ceratespk" type="submit" class="btn btn-warning btn-block mt-2">Create Agreement</button>
+                  <button id="ceratespk" type="submit" class="btn btn-warning btn-block mt-2">Request Add Fund</button>
                 </form>
               </div>
             </div>
@@ -410,7 +410,7 @@
       });
 
       //generate spk
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbyqwKb-o0Zp5qFHC6HjqLo_bsva5Fhs-K85gcQPcyBF49up2qlY8qWLAGiTOvx7L8NOeg/exec';
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbxFIHrZawTwh8oq6M4zlShmHbPAKsoi2Fzlte1b6AvpylNnTM_ZvtQ1XvB3qJ8anCx-rw/exec';
       const form = document.forms['generateSpK']
 
       form.addEventListener('submit', e => {
