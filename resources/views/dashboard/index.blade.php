@@ -55,7 +55,7 @@
               <div class="row g-0">
                 <div class="col-md-8">
                   <div class="card-body">
-                    <h5 class="card-title text-white">Amount disbursed</h5>
+                    <h5 class="card-title text-white">Amount Disbursed</h5>
                     <h3 class="card-text text-white">
                       {{ formatRp($static_report['current']['loan_project']) }}
                     </h3>
@@ -69,7 +69,7 @@
               <div class="row g-0">
                 <div class="col-md-8">
                   <div class="card-body">
-                    <h5 class="card-title text-white">Total transactions</h5>
+                    <h5 class="card-title text-white">Total Transactions</h5>
                     <h3 class="card-text text-white">
                       {{ $static_report['since_exist']['total_transaction'] }}
                     </h3>
@@ -83,7 +83,7 @@
               <div class="row g-0">
                 <div class="col-md-8">
                   <div class="card-body">
-                    <h5 class="card-title text-white">Available fund</h5>
+                    <h5 class="card-title text-white">Available Fund</h5>
                     <h3 class="card-text text-white">
                       {{ formatRp($static_report['current']['avalaible_amount']) }}
                     </h3>
