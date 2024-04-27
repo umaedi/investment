@@ -494,7 +494,7 @@
     incomeChartConfig = {
       series: [
         {
-          data: [1, 10, 20, 30, 40, 50]
+          data: [3, 10, 20, 30, 40, 50]
         }
       ],
       chart: {
@@ -558,7 +558,7 @@
         }
       },
       xaxis: {
-        categories: ['', '3 Bulan', '6 Bulan', '12 Bulan'],
+        categories: ['', 'Rp 2.250.000 /3 Month', 'Rp 4.500.000 /6 Month', 'Rp 9.000.000 /12 Month'],
         axisBorder: {
           show: false
         },

@@ -147,30 +147,33 @@
                   <div class="form-group mb-2">
                     <label for="" class="text-white">Amount Investment
                     </label>
-                    <input type="text" name="nominal" class="form-control" onkeyup="addfundInvesment(this)">
+                    <input type="text" name="topup" class="form-control" value="Rp 50.000.000" onkeyup="addfundInvesment(this)">
+                  </div>
+                  <div class="form-group mb-2">
+                    <label for="" class="text-white">Splled Out
+                    </label>
+                    <input type="text" name="terbilang" class="form-control" value="Lima Puluh Juta">
                   </div>
                   <div class="form-group">
                     <label for="" class="text-white">Periode Amount</label>
-                    <select name="periode" class="form-select" id="">
+                    <select name="period" class="form-select" id="">
                       <option value="3">3</option>
                       <option value="6">6</option>
                       <option value="12">12</option>
                     </select>
                   </div>
-
-                  <input type="hidden" name="no agreement" value="018/LENDER/02/2024">
-                  <input type="hidden" name="tanggal perjanjian" value="{{ date('D M Y') }}">
-                  <input type="hidden" name="NAME" value="UMAEDI KH">
-                  <input type="hidden" name="Name Proper" value="umaedi">
-                  <input type="hidden" name="NIK" value="123456789123456">
-                  <input type="hidden" name="alamat" value="Way Kanan">
-                  <input type="hidden" name="terbilang" value="Lima Puluh Juta">
+                  <input type="hidden" name="no agreement" value="-">
+                  <input type="hidden" name="tanggal perjanjian" value="{{ date('j F Y') }}">
+                  <input type="hidden" name="NAME" value="{{ $user['name'] }}">
+                  <input type="hidden" name="Name Proper" value="{{ $user['name'] }}">
+                  <input type="hidden" name="NIK" value="{{ $user['nik'] }}">
+                  <input type="hidden" name="alamat" value="{{ $user['address'] }}">
                   <input type="hidden" name="tanggal investment" value="{{ date('D M Y') }}">
-                  <input type="hidden" name="no rekening" value="12345">
-                  <input type="hidden" name="nama bank" value="BRI">
-                  <input type="hidden" name="nama rekening" value="UMAEDI">
-                  <input type="hidden" name="phone" value="085741492045">
-                  <input type="hidden" name="email" value="umaedi@duluin.com">
+                  <input type="hidden" name="no rekening" value="{{ $user['bank_account_number'] }}">
+                  <input type="hidden" name="nama bank" value="{{ $user['bank_name'] }}">
+                  <input type="hidden" name="nama rekening" value="{{ $user['bank_account_name'] }}">
+                  <input type="hidden" name="phone" value="{{ $user['phone_number'] }}">
+                  <input type="hidden" name="email" value="{{ $user['email'] }}">
                   <button id="ceratespk" type="submit" class="btn btn-warning btn-block mt-2">Create Agreement</button>
                 </form>
               </div>
@@ -178,53 +181,9 @@
         </div>
       </div>
       <!-- Financial Statment -->
-      {{-- <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2 my-3">
-        <div class="card">
-          <div class="row row-bordered g-0">
-            <div class="col-md-8">
-              <h5 class="card-header m-0 me-2 pb-3">Financial Statment</h5>
-              <img src="{{ asset('img/financial/financial-statment.png') }}" alt="Financial Statment Duluin" lazy="loading" width="100%">
-            </div>
-            <div class="col-md-4 py-5">
-              <div class="card-body">
-                <div class="text-center">
-                  <div class="dropdown">
-                    <button
-                      class="btn btn-sm btn-outline-primary dropdown-toggle"
-                      type="button"
-                      id="growthReportId"
-                      data-bs-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      2024
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="growthReportId">
-                      <a class="dropdown-item" href="javascript:void(0);">2024</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div id="growthChart"></div>
-              <div class="text-center fw-semibold pt-3 mb-3">78% Company Growth</div>
-
-              <div class="ms-3">
-                <div class="col-md-4">
-                  <span class="badge bg-primary">Projection: {{ $static_report['financial_statment']['current_fund'] }}</span>
-                </div>
-                <div class="col-md-4">
-                  <span class="badge bg-primary">Current Funding</span>
-                </div>
-                <div class="col-md-4">
-                  <span class="badge bg-primary">Total Funding Needed</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> --}}
+  
       <!-- Financial Statment end-->
-      <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2 mb-4">
+      <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2 my-4">
         <div class="card">
           <h5 class="card-header">Transaction</h5>
           <div class="card-body">
@@ -440,14 +399,18 @@
       });
 
       //generate spk
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbyyJSyoaZ6XEOrzrlHBnU1nd1zXpYTO6iEtAeW2T_p-NMwdQstewQfjEKodPf6uCm6C/exec';
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbyqwKb-o0Zp5qFHC6HjqLo_bsva5Fhs-K85gcQPcyBF49up2qlY8qWLAGiTOvx7L8NOeg/exec';
       const form = document.forms['generateSpK']
 
       form.addEventListener('submit', e => {
         e.preventDefault()
-        // $('#btnLoading').removeClass('d-none');
-        // $('#ceratespk').addClass('d-none');
-        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+
+        var  data = new FormData(form);
+        var inputVal = data.get('topup');
+        var topup = inputVal.replace(/\D/g, '');
+        data.append('nominal', topup);
+
+        fetch(scriptURL, { method: 'POST', body: data})
           .then(response => console.log('Success!', response))
           .catch(error => console.error('Error!', error.message))
           swal({ title: 'Success', text: "Add Fund Investment Succes!", icon: 'success' });
