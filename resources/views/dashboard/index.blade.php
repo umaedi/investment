@@ -140,7 +140,7 @@
         </div>
         </div>
         <div class="col-lg-4">
-            <button class="btn btn-primary mb-3 w-100 fw-bold" style="font-size: 16px;">Add Fund Investment</button>
+            <button class="btn mb-3 w-100 fw-bold text-white" style="background-color: #1a9988; font-size: 16px;">Add Fund Investment</button>
             <div class="card" style="background-color: #1a9988">
               <div class="card-body">
                 <form name="generateSpK">
