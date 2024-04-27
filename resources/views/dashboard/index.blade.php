@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-lg-12 mb-4 order-0b">
         <div class="card" style="background-color: #1a9988">
-          <div class="d-flex align-items-end row">
+          <div class="d-flex align-items-center row">
             <div class="col-sm-7 hero-title">
               <div class="card-body">
                 <h3 class="card-title fw-bold" style="color: #fff">Hello {{ $user['name'] }}</h3>
