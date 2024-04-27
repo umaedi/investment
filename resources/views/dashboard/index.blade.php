@@ -150,12 +150,12 @@
                     <input type="text" name="topup" class="form-control" value="Rp 50.000.000" onkeyup="addfundInvesment(this)">
                   </div>
                   <div class="form-group mb-2">
-                    <label for="" class="text-white">Splled Out
+                    <label for="" class="text-white">Spelled Out
                     </label>
                     <input type="text" name="terbilang" class="form-control" value="Lima Puluh Juta">
                   </div>
                   <div class="form-group">
-                    <label for="" class="text-white">Periode Amount</label>
+                    <label for="" class="text-white">Period Month</label>
                     <select name="period" class="form-select" id="">
                       <option value="3">3</option>
                       <option value="6">6</option>
@@ -422,10 +422,15 @@
         data.append('nominal', topup);
 
         fetch(scriptURL, { method: 'POST', body: data})
-          .then(response => console.log('Success!', response))
+          .then(response => sendWhatsApp(response))
           .catch(error => console.error('Error!', error.message))
           swal({ title: 'Success', text: "Add Fund Investment Succes!", icon: 'success' });
       })
+
+      async function sendWhatsApp(response)
+      {
+        console.log('ok');
+      }
 
       const rupiah = (number) => {
       const formattedNumber = new Intl.NumberFormat("id-ID", {
@@ -441,34 +446,34 @@
         input.value = rupiah(value);
       }
 
-      let minFund = 50000000;
-      document.getElementById('minFund').value = rupiah(minFund);
-      function formatRupiah(input) {
-        const value = input.value.replace(/\D/g, ""); // Menghapus karakter non-digit
-        input.value = rupiah(value); // Memformat nilai dan memperbarui nilai input
-      }
+      // let minFund = 50000000;
+      // document.getElementById('minFund').value = rupiah(minFund);
+      // function formatRupiah(input) {
+      //   const value = input.value.replace(/\D/g, ""); // Menghapus karakter non-digit
+      //   input.value = rupiah(value); // Memformat nilai dan memperbarui nilai input
+      // }
 
-      //simulate funding
-      function calculateInvestmentReturn(minFund, rate, period) {
-          return minFund + (minFund * (rate * period));
-      }
+      // //simulate funding
+      // function calculateInvestmentReturn(minFund, rate, period) {
+      //     return minFund + (minFund * (rate * period));
+      // }
 
-      document.getElementById("calculateBtn").addEventListener("click", function() {
-      // let minFund = parseFloat(document.getElementById("minFund").value);
-      let minFund = 50000000;
-      let rate = 0.015;
-      let period = parseFloat(document.getElementById("period").value);
+      // document.getElementById("calculateBtn").addEventListener("click", function() {
+      // // let minFund = parseFloat(document.getElementById("minFund").value);
+      // let minFund = 50000000;
+      // let rate = 0.015;
+      // let period = parseFloat(document.getElementById("period").value);
       
       
-      $('#profit').removeClass('d-none');
-      confetti({
-        particleCount: 150,
-        spread: 60
-      });
+      // $('#profit').removeClass('d-none');
+      // confetti({
+      //   particleCount: 150,
+      //   spread: 60
+      // });
       
-      let investmentReturn = calculateInvestmentReturn(minFund, rate, period);
-      document.getElementById("result").innerText = rupiah(investmentReturn - minFund);
-      document.getElementById("monthx").innerText = '/' + period + ' Month';
-});
+      // let investmentReturn = calculateInvestmentReturn(minFund, rate, period);
+      // document.getElementById("result").innerText = rupiah(investmentReturn - minFund);
+      // document.getElementById("monthx").innerText = '/' + period + ' Month';
+// });
 </script>
 @endpush
