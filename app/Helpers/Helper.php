@@ -10,10 +10,13 @@ function formatRp($number) {
 
 if(!function_exists('masking')) {
     function masking($name) {
-        $firstPart = substr($name, 0, 2);
-        $secondPart = substr($name, 2);
-        $maskedPart = str_repeat('*', strlen($secondPart));
-        return $firstPart . $maskedPart;
+        $words = explode(" ", $name);
+        $firstWord = $words[0];
+        $second = end($words);
+
+        $tes = substr($firstWord, 0, 2) . str_repeat('*', strlen($name) - 2);
+        $testt = substr($second, 0, 2) . str_repeat('*', strlen($name) - 2);
+        return $tes . $testt;
     }
 }
 

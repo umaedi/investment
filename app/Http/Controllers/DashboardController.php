@@ -29,7 +29,7 @@ class DashboardController extends Controller
             return view('dashboard._data_table', $data);
         }
         $data['title'] = 'Dashboard Lender';
-        $data['static_report'] = $this->get('investor/report/static');
+        $data['static_report'] = $this->post('investor/report/static');
         $data['user'] = $this->get('investor/account');
         // dd($data['user']);
         return view('dashboard.index', $data);
