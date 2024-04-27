@@ -6,8 +6,8 @@
   <td>{{ $tb['interest'] }}</td>
   <td>{{ formatRp($tb['return_amount']) }}</td>
   <td>{{ formatRp($tb['margin']) }}</td>
-  <td>{{ $tb['repayment_date'] }}</td>
-  <td>{{ $tb['disbursed_date'] }}</td>
+  <td>{{ date('d-m-Y', strtotime($tb['disbursed_date'])) }}</td>
+  <td>{{ date('d-m-Y', strtotime($tb['repayment_date'])) }}</td>
   <td><span class="badge {{ $tb['invest_status'] == 'disbursed' ? 'bg-warning' : 'bg-primary' }}">{{ $tb['invest_status'] }}</span></td>
 </tr>
 @empty
