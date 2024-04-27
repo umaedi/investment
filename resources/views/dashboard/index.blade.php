@@ -9,7 +9,7 @@
               <div class="card-body">
                 <h3 class="card-title fw-bold" style="color: #fff">Hello {{ $user['name'] }}</h3>
                 <p class="text-white">
-                  Welcome to the Lender Financial Reporting Dashboard! We hope this dashboard serves as a useful tool for you in making informed and strategic decisions.
+                  Welcome to the Lender Financial Reporting Dashboard!
                 </p>
                 <a href="/lender/profile" class="btn btn-sm btn-light" style="color: #1a9988"><i class='bx bx-badge-check'></i> {{ $static_report['member_lvl'] }}</a>
                 <a href="/lender/profile" class="btn btn-sm btn-warning" style="color: #fff"><i class="bx bx-user me-1"></i>My Profile</a>
