@@ -280,7 +280,7 @@
           </div>
           <!--/ Bordered Table -->
       </div>
-      <div class="row">
+      {{-- <div class="row">
       <div class="col-12 col-lg-4 order-2 order-md-3 order-lg-2 mb-4">
           <div class="card">
             <h5 class="card-header">Come on, try simulating your investment 🎉</h5>
@@ -327,7 +327,7 @@
             </div>
           </div>
       </div>
-      </div>
+      </div> --}}
     </div>
   </div>
 @endsection
