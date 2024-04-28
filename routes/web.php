@@ -30,4 +30,7 @@ Route::middleware('checkAccessToken')->prefix('lender')->group(function() {
     //print or pdf
     Route::get('/print/transction', [PrintController::class, 'transction']);
     Route::get('/print/funding_balance', [PrintController::class, 'fundingbalance']);
+
+    //send wa
+    Route::post('/send-whatsapp', SendwaController::class);
 });

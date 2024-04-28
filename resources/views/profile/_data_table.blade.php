@@ -15,12 +15,12 @@
   <tbody>
     <tr>
       <th scope="row">{{ $key + 1 }}</th>
-      <td>{{ $adb['transaction_date'] }}</td>
+      <td>{{  date('d-m-Y', strtotime($adb['transaction_date'])) }}</td>
       <td>{{ $adb['bank_name'] }}</td>
       <td>{{ $adb['bank_account_number'] }}</td>
       <td>{{ $adb['debit'] }}</td>
-      <td>{{ $adb['credit'] }}</td>
-      <td>{{ $adb['close_balance'] }}</td>
+      <td>{{ formatRp($adb['credit']) }}</td>
+      <td>{{ formatRp($adb['close_balance']) }}</td>
       <td>{{ $adb['description'] }}</td>
       {{-- <td><span class="badge bg-primary">repayment</span></td> --}}
     </tr>

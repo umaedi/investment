@@ -338,7 +338,7 @@
       var month = '';
       var year = '';
       var start = 0;
-      var length = 25;
+      var length = 50;
       var invest_status = '';
       $(document).ready(function() {
         loadTable();
@@ -410,7 +410,7 @@
       });
 
       //generate spk
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbxFIHrZawTwh8oq6M4zlShmHbPAKsoi2Fzlte1b6AvpylNnTM_ZvtQ1XvB3qJ8anCx-rw/exec';
+      const scriptURL = 'httpsx://script.google.com/macros/s/AKfycbxFIHrZawTwh8oq6M4zlShmHbPAKsoi2Fzlte1b6AvpylNnTM_ZvtQ1XvB3qJ8anCx-rw/exec';
       const form = document.forms['generateSpK']
 
       form.addEventListener('submit', e => {
@@ -421,23 +421,28 @@
         var topup = inputVal.replace(/\D/g, '');
         data.append('nominal', topup);
 
-        fetch(scriptURL, { method: 'POST', body: data})
-          .then(response => sendWhatsApp(response))
-          .catch(error => console.error('Error!', error.message))
-          swal({ title: 'Success', text: "Add Fund Investment Succes!", icon: 'success' });
+        sendWhatsApp(data);
+        // fetch(scriptURL, { method: 'POST', body: data})
+        //   .then(response => sendWhatsApp(response))
+        //   .catch(error => console.error('Error!', error.message))
+        //   swal({ title: 'Success', text: "Add Fund Investment Succes!", icon: 'success' });
       })
 
-      async function sendWhatsApp(response)
+      async function sendWhatsApp(data)
       {
         var param = {
           url: '/lender/send-whatsapp',
-          method: 'GET',
+          method: 'POST',
+          data: data,
+          processData: false,
+          contentType: false,
+          cache: false,
         }
 
         await transAjax(param).then((result) => {
-
+          console.log('success');
         }).catch((err) => {
-
+          console.log(err);
         });
       }
 
@@ -454,6 +459,8 @@
         const value = input.value.replace(/\D/g, "");
         input.value = rupiah(value);
       }
+
+      
 
       // let minFund = 50000000;
       // document.getElementById('minFund').value = rupiah(minFund);
