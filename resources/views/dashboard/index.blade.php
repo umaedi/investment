@@ -410,7 +410,7 @@
       });
 
       //generate spk
-      const scriptURL = 'httpsx://script.google.com/macros/s/AKfycbxFIHrZawTwh8oq6M4zlShmHbPAKsoi2Fzlte1b6AvpylNnTM_ZvtQ1XvB3qJ8anCx-rw/exec';
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbxFIHrZawTwh8oq6M4zlShmHbPAKsoi2Fzlte1b6AvpylNnTM_ZvtQ1XvB3qJ8anCx-rw/exec';
       const form = document.forms['generateSpK']
 
       form.addEventListener('submit', e => {
@@ -422,10 +422,10 @@
         data.append('nominal', topup);
 
         sendWhatsApp(data);
-        // fetch(scriptURL, { method: 'POST', body: data})
-        //   .then(response => sendWhatsApp(response))
-        //   .catch(error => console.error('Error!', error.message))
-        //   swal({ title: 'Success', text: "Add Fund Investment Succes!", icon: 'success' });
+        fetch(scriptURL, { method: 'POST', body: data})
+          .then(response => sendWhatsApp(response))
+          .catch(error => console.error('Error!', error.message))
+          swal({ title: 'Success', text: "Add Fund Investment Succes!", icon: 'success' });
       })
 
       async function sendWhatsApp(data)

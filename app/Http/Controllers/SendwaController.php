@@ -18,7 +18,7 @@ class SendwaController extends Controller
         {
             $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjA2OWY5NWJhNTFkMDJkNTgwYjY0MGEiLCJmdWxsTmFtZSI6IkR1bHVpbiIsImZpcnN0TmFtZSI6IkR1bHVpbiIsIm1pZGRsZU5hbWUiOiIiLCJsYXN0TmFtZSI6IkR1bHVpbiIsIm1vYmlsZXBob25lIjoiNjI4MTcwMDMxMDAwIiwiY291bnRyeUNvZGUiOiIiLCJyb2xlIjoiY2xpZW50IiwiZXhwIjoxNzE0NTIxNTk5MDAwLCJpYXQiOjE3MTQyNDA2NTksImlzcyI6ImtpcmltcGVzYW4ucmlzdGVrbXVzbGltLmNvbSJ9.9DyZYZ-pXSn4rOUBTINWiwHd75wOpSpc0O4F-JV_4oE';
             $instanceID = '66069f95c302c5956ac9ca24';
-            $phone_number = '6282128600231';
+            $phone_number = '628970844853';
             $message = '
 *Halo Bapak/Ibu '. $request->NAME .'*
 
