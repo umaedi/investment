@@ -178,8 +178,24 @@
           Loading...
         </button>
         <div class="card-body">
-          <div class="table-responsive text-nowrap" id="dataTable">
-          
+          <div class="table-responsive text-nowrap">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Transaction Date</th>
+                  <th>Bank Name</th>
+                  <th>Bank Acount Number</th>
+                  <th>Debit</th>
+                  <th>Credit</th>
+                  <th>Close Balance</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody id="dataTable">
+                
+              </tbody>
+            </table>
           </div>
         </div>
     </div>

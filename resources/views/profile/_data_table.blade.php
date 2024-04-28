@@ -1,31 +1,15 @@
 @forelse ($table['data'] as $key => $adb)
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>No</th>
-      <th>Transaction Date</th>
-      <th>Bank Name</th>
-      <th>Bank Acount Number</th>
-      <th>Debit</th>
-      <th>Credit</th>
-      <th>Close Balance</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">{{ $key + 1 }}</th>
-      <td>{{  date('d-m-Y', strtotime($adb['transaction_date'])) }}</td>
-      <td>{{ $adb['bank_name'] }}</td>
-      <td>{{ $adb['bank_account_number'] }}</td>
-      <td>{{ $adb['debit'] }}</td>
-      <td>{{ formatRp($adb['credit']) }}</td>
-      <td>{{ formatRp($adb['close_balance']) }}</td>
-      <td>{{ $adb['description'] }}</td>
-      {{-- <td><span class="badge bg-primary">repayment</span></td> --}}
-    </tr>
-  </tbody>
-</table>
+<tr>
+  <th scope="row">{{ $key + 1 }}</th>
+  <td>{{  date('d-m-Y', strtotime($adb['transaction_date'])) }}</td>
+  <td>{{ $adb['bank_name'] }}</td>
+  <td>{{ $adb['bank_account_number'] }}</td>
+  <td>{{ $adb['debit'] }}</td>
+  <td>{{ formatRp($adb['credit']) }}</td>
+  <td>{{ formatRp($adb['close_balance']) }}</td>
+  <td>{{ $adb['description'] }}</td>
+  {{-- <td><span class="badge bg-primary">repayment</span></td> --}}
+</tr>
 @empty
 <div class="col text-center">
   <div class="empty-img">
