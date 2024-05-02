@@ -3,7 +3,7 @@
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
       <div class="col-lg-12 mb-4 order-0b">
-        <div class="card" style="background-color: #1a9988">
+        <div class="card" style="background: linear-gradient(135deg, #1a9988, #076759);">
           <div class="d-flex align-items-center row">
             <div class="col-sm-7 hero-title">
               <div class="card-body">
@@ -17,7 +17,7 @@
             </div>
             <div class="col-sm-5 text-center text-sm-left">
               <div class="card-body pb-0 px-0 px-md-4">
-                <img src="{{ asset('img') }}/illustrations/man-with-laptop-light.png" height="190" loading="lazy"
+                <img src="{{ asset('img') }}/financial_report.svg" height="190" loading="lazy"
                   alt="View Badge User" data-app-dark-img="illustrations/man-with-laptop-dark.png"
                   data-app-light-img="illustrations/man-with-laptop-light.png" />
               </div>
@@ -272,7 +272,7 @@
                   </tr>
                 </thead>
                 <tbody id="dataTable">
-                  
+     
                 </tbody>
               </table>
               </div>
