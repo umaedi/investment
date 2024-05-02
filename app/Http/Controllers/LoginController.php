@@ -9,7 +9,7 @@ class LoginController extends Controller
 {
     public function index()
     {
-        $data['title'] = 'Lender - Login Duluin';
+        $data['title'] = 'Lender - Login';
         return view('auth.login', $data);
     }
 
