@@ -29,13 +29,9 @@ class DashboardController extends Controller
             return view('dashboard._data_table', $data);
         }
         $data['title'] = 'Dashboard Lender';
-        $data['static_report'] =  Cache::remember('static_report', 60, function () {
-            return $this->get('investor/report/static');
-        });
-        $data['user'] = Cache::remember('account', 60, function () {
-            return $this->get('investor/account');
-        });
-        
+        $data['static_report'] = $this->get('investor/report/static');
+        $data['user'] = $this->get('investor/account');
+        // dd($data['user']);
         return view('dashboard.index', $data);
     }
 }
