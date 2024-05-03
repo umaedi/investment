@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
 
 
 class ProfileController extends Controller
@@ -15,7 +16,11 @@ class ProfileController extends Controller
             $data['table'] = $this->post('investor/report/balance');
             return view('profile._data_table', $data);
         }
-        $data['user'] = $this->get('investor/account');
+
+        $data['user'] = Cache::remember('profile', 60, function () {
+            return $this->get('investor/account');
+            
+        });
         return view('profile.index', $data);
     }
 
