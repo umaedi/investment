@@ -14,7 +14,7 @@
               <div class="mb-3">
                 <label for="text" class="form-label">New Password</label>
                 <input
-                  type="text"
+                  type="password"
                   class="form-control"
                   id="text"
                   name="password"
@@ -24,7 +24,7 @@
               <div class="mb-3">
                 <label for="password_confirmation" class="form-label">Confirm Password</label>
                 <input
-                  type="text"
+                  type="password"
                   class="form-control"
                   id="password_confirmation"
                   name="password_confirmation"
@@ -70,6 +70,9 @@
             await transAjax(param).then((result) => {
                 loading(false)
                 $('#notif').html(`<div class="alert alert-success">${result.message}</div>`);
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 3000);
             }).catch((err) => {
                 loading(false)
                 return alert(err)
