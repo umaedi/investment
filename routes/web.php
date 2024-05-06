@@ -17,6 +17,9 @@ Route::get('/', [AuthController::class, 'index']);
 Route::get('/lender/login', [AuthController::class, 'auth']);
 Route::get('/lender/forgot-password', [AuthController::class, 'forgot']);
 
+Route::get('/password-reset/{token}', [ResetpasswordController::class, 'index']);
+Route::post('/password-reset', [ResetpasswordController::class, 'reset']);
+
 Route::middleware('checkAccessToken')->prefix('lender')->group(function() {
     Route::get('/dashboard', DashboardController::class);
     

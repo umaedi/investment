@@ -26,11 +26,11 @@ class DashboardController extends Controller
             ];
             
             $data['table'] = $this->query('investor/report/lender', $params);
-            $totalReturnAmount = 0;
-            foreach ($data['table']['data'] as $item) {
-                $totalReturnAmount += $item['margin'];
-            }
-            $data['totalReturnAmount'] = $totalReturnAmount;
+            // $totalReturnAmount = 0;
+            // foreach ($data['table']['data'] as $item) {
+            //     $totalReturnAmount += $item['margin'];
+            // }
+            // $data['totalReturnAmount'] = $totalReturnAmount;
             return view('dashboard._data_table', $data);
         }
         $data['title'] = 'Dashboard Lender';
