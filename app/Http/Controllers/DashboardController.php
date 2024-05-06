@@ -35,7 +35,7 @@ class DashboardController extends Controller
         }
         $data['title'] = 'Dashboard Lender';
         $data['static_report'] = Cache::remember('static_report', 60, function () {
-            return $this->post('investor/report/static');
+            return $this->get('investor/report/static');
         });
         $data['user'] = Cache::remember('user', 60, function () {
             return $this->get('investor/account');
