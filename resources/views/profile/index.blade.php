@@ -5,12 +5,19 @@
     <div class="row">
       <div class="col-md-6 mb-3">
         <ul class="nav nav-pills flex-column flex-md-row mb-3">
-          <li class="nav-item">
-            <a class="nav-link active" href="javascript:void(0);"><i class="bx bx-user me-1"></i> Account</a>
+          <li class="nav-item d-flex">
+            <a class="nav-link active me-2" href="javascript:void(0);"><i class="bx bx-user me-1"></i> Account</a>
+            <form id="logout">
+              <button id="btnLogout" type="submit" class="btn btn-danger">Logout</button>
+            </form>
           </li>
+          <button id="btnLogoutLoading" class="btn btn-danger d-none" type="button">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Please wait...
+          </button>
         </ul>
         <div class="card mb-4">
-          <h5 class="card-header">Profile Details</h5>
+            <h5 class="card-header">Profile Details</h5>
           <hr class="my-0" />
           <div class="card-body">
             <form id="formUpdateAccount">
@@ -278,5 +285,47 @@
           }
         }
       })
+
+      $('#logout').submit(async function(e){
+        e.preventDefault();
+
+        var data = new FormData(this);
+        var param = {
+          url: '/lender/logout',
+          method: 'POST',
+          data: data,
+          processData: false,
+          contentType: false,
+          cache: false
+        }
+
+        loadingLogout(true);
+        await transAjax(param).then((result) => {
+          loadingLogout(false);
+          swal({
+              text: result.message,
+              icon: 'success',
+              timer: 3000,
+          }).then(() => {
+              loadingLogout(false);
+              window.location.href = '/';
+            });
+          }).catch((err) => {
+          loadingLogout(false);
+          swal({ title: 'Success', text: "Internal Server Error!", icon: 'error' });
+        });
+
+        function loadingLogout(state)
+        {
+          if(state) {
+            $('#btnLogoutLoading').removeClass('d-none');
+            $('#btnLogout').addClass('d-none');
+          }else {
+            $('#btnLogoutLoading').addClass('d-none');
+            $('#btnLogout').removeClass('d-none');
+          }
+        }
+
+      });
     </script>
 @endpush

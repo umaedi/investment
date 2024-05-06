@@ -50,4 +50,19 @@ class AuthController extends Controller
         $data['title'] = 'Lender - Forgot Password Duluin';
         return view('auth.forgot', $data);
     }
+
+    public function logout()
+    {
+        $token = $_COOKIE['access_token'];
+        $response = Http::post(env('APP_SERVER') .'auth/logout', [
+            'token'     => $token,
+        ]);
+
+        if($response->successful()) {
+            setcookie("access_token", "xxx-xxx-xxx", time() + 86400, '/');
+            return $this->success('ok', 'Logout Successful');
+        }else {
+            return $this->error('Internal Server Error');
+        }
+    }
 }
