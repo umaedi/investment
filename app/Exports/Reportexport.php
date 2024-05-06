@@ -4,26 +4,28 @@ namespace App\Exports;
 
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class Reportexport implements FromView
+class ReportExport implements FromView, WithHeadings
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    protected $report;
-    public function __construct($report)
+    protected $data;
+    protected $headings;
+
+    public function __construct($data, $headings)
     {
-        $this->report = $report;
-    }
-    public function collection()
-    {
-        return $this->report;
+        $this->data = $data;
+        $this->headings = $headings;
     }
 
     public function view(): View
     {
         return view('dashboard._data_table', [
-            'table' => $this->report
+            'table' => $this->data
         ]);
+    }
+
+    public function headings(): array
+    {
+        return $this->headings;
     }
 }

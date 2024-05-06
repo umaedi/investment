@@ -11,7 +11,19 @@ class ExportController extends Controller
     public function transction()
     {
         $report =$this->post('investor/report/lender');
-        return Excel::download(new Reportexport($report), date('Y-m-d') . '-report-lender' . '.xlsx');
+
+        $headings = [
+            'No',
+            'Borrower Name',
+            'Loan Amount',
+            'Interest',
+            'Return',
+            'Margin',
+            'Disbursed Date',
+            'Repayment Date',
+            'Status',
+        ];
+        return Excel::download(new Reportexport($report, $headings), date('Y-m-d') . '-report-lender' . '.xlsx');
     }
 
     public function fundingbalance()

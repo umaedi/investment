@@ -15,6 +15,8 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request)
     {
+        $report =$this->post('investor/report/lender');
+
         if($request->ajax()) {
 
             $params = [
@@ -26,12 +28,19 @@ class DashboardController extends Controller
             ];
             
             $data['table'] = $this->query('investor/report/lender', $params);
+            $totalReturnAmount = 0;
+
+            // Menjumlahkan return_amount dari setiap elemen data
+            foreach ($data['table']['data'] as $item) {
+                $totalReturnAmount += $item['margin'];
+            }
+            $data['totalReturnAmount'] = $totalReturnAmount;
             return view('dashboard._data_table', $data);
         }
-        
         $data['title'] = 'Dashboard Lender';
         $data['static_report'] = $this->get('investor/report/static');
         $data['user'] = $this->get('investor/account');
+        // dd($data['user']);
         return view('dashboard.index', $data);
     }
 }

@@ -256,25 +256,8 @@
         </div>
           <div class="card mt-3">
             <div class="card-body">
-              <div class="table-responsive text-nowrap">
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Borrower Name</th>
-                    <th>Loan Amount</th>
-                    <th>Interest</th>
-                    <th>Return</th>
-                    <th>Margin</th>
-                    <th>Disbursed Date</th>
-                    <th>Repayment Date</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody id="dataTable">
-     
-                </tbody>
-              </table>
+              <div class="table-responsive text-nowrap" id="dataTable">
+   
               </div>
             </div>
           </div>
