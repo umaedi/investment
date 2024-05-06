@@ -44,5 +44,5 @@
   </tbody>
 </table>
 <div class="text-center">
-  <button class="btn mt-3 text-white" style="background-color: #1a9988;">Total Margin: {{ formatRp($totalReturnAmount) }}</button>
+  <button class="btn mt-3 text-white" style="background-color: #1a9988;">Total Margin: {{ formatRp($totalReturnAmount)  ?? ""}}</button>
 </div>
