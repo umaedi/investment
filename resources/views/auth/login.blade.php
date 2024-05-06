@@ -42,12 +42,12 @@
                       <input
                         type="password"
                         id="password"
-                        class="form-control"
+                        class="form-control password"
                         name="password"
                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                         aria-describedby="password"
                       />
-                      <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                      <span class="input-group-text cursor-pointer"><i class="bx bx-hide togglePassword"></i></span>
                     </div>
                   </div>
                   <div class="mb-3">
@@ -116,5 +116,19 @@
           $('#btn_submit').removeClass('d-none');
         }
       }
+
+      $(".togglePassword").click(function (e) {
+      e.preventDefault();
+      var type = $(this).parent().parent().find(".password").attr("type");
+      console.log(type);
+      if(type == "password"){
+          $(this).removeClass("bx bx-hide");
+          $(this).addClass("bx bx-show");
+          $(this).parent().parent().find(".password").attr("type","text");
+      }else if(type == "text"){
+          $(this).removeClass("bx bx-show");
+          $(this).addClass("bx bx-hide");
+          $(this).parent().parent().find(".password").attr("type","password");
+      }});
     </script>
 @endpush

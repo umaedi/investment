@@ -29,7 +29,7 @@
     <!-- Core CSS -->
     <link rel="stylesheet" href="{{ asset('vendor') }}/css/core.css" class="template-customizer-core-css" />
     <link rel="stylesheet" href="{{ asset('vendor') }}/css/theme-default.css" class="template-customizer-theme-css" />
-
+    <link rel="stylesheet" href="{{ asset('vendor') }}/fonts/boxicons.css" />
     <link rel="stylesheet" href="{{ asset('vendor') }}/css/pages/page-auth.css" />
   </head>
 

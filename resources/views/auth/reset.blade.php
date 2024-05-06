@@ -11,26 +11,30 @@
             <p class="mb-4">Enter new password and confirm password</p>
             <form id="formAuthentication" class="mb-3">
             <input type="hidden" name="token" value="{{ $token }}">
-              <div class="mb-3">
-                <label for="text" class="form-label">New Password</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="text"
-                  name="password"
-                  autofocus
-                />
-              </div>
-              <div class="mb-3">
-                <label for="password_confirmation" class="form-label">Confirm Password</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="password_confirmation"
-                  name="password_confirmation"
-                  autofocus
-                />
-              </div>
+            <label for="password">New Password</label>
+            <div class="input-group input-group-merge mb-3 mt-2">
+              <input
+                type="password"
+                id="password"
+                class="form-control password"
+                name="password"
+                placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                aria-describedby="password"
+              />
+              <span class="input-group-text cursor-pointer"><i class="bx bx-hide togglePassword"></i></span>
+            </div>
+            <label for="password">Confirm Password</label>
+            <div class="input-group input-group-merge mb-3 mt-2">
+              <input
+                type="password"
+                id="password_confirmation"
+                class="form-control password"
+                name="password_confirmation"
+                placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                aria-describedby="password"
+              />
+              <span class="input-group-text cursor-pointer"><i class="bx bx-hide togglePassword"></i></span>
+            </div>
               <button id="btn_loading" class="btn btn-primary w-100 d-none" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 Please wait...
@@ -88,5 +92,19 @@
                 $('#btn_submit').removeClass('d-none');
             }
         }
+
+        $(".togglePassword").click(function (e) {
+        e.preventDefault();
+        var type = $(this).parent().parent().find(".password").attr("type");
+        console.log(type);
+        if(type == "password"){
+            $(this).removeClass("bx bx-hide");
+            $(this).addClass("bx bx-show");
+            $(this).parent().parent().find(".password").attr("type","text");
+        }else if(type == "text"){
+            $(this).removeClass("bx bx-show");
+            $(this).addClass("bx bx-hide");
+            $(this).parent().parent().find(".password").attr("type","password");
+      }});
     </script>
 @endpush
