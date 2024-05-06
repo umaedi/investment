@@ -26,12 +26,20 @@ class DashboardController extends Controller
             ];
             
             $data['table'] = $this->query('investor/report/lender', $params);
+            $totalReturnAmount = 0;
+            foreach ($data['table']['data'] as $item) {
+                $totalReturnAmount += $item['margin'];
+            }
+            $data['totalReturnAmount'] = $totalReturnAmount;
             return view('dashboard._data_table', $data);
         }
         $data['title'] = 'Dashboard Lender';
-        $data['static_report'] = $this->get('investor/report/static');
-        $data['user'] = $this->get('investor/account');
-        // dd($data['user']);
+        $data['static_report'] = Cache::remember('static_report', 60, function () {
+            return $this->post('investor/report/static');
+        });
+        $data['user'] = Cache::remember('user', 60, function () {
+            return $this->get('investor/account');
+        });
         return view('dashboard.index', $data);
     }
 }

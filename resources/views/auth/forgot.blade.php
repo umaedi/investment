@@ -7,13 +7,6 @@
         <div class="card">
             <span id="notif"></span>
           <div class="card-body">
-            <!-- Logo -->
-            {{-- <div class="app-brand text-center">
-              <a href="/">
-                  <img src="{{ asset('img/logo/logo.webp') }}" alt="" width="50%">
-              </a>
-            </div> --}}
-            <!-- /Logo -->
             <h4 class="mb-2">Forget Password? 🔒</h4>
             <p class="mb-4">Enter your email and we'll send you instructions to reset your password</p>
             <form id="formAuthentication" class="mb-3">
@@ -63,7 +56,7 @@
             loading(true)
             await transAjax(param).then((result) => {
                 loading(false)
-                $('#notif').html(`<div class="alert alert-warning">${result.message}</div>`);
+                $('#notif').html(`<div class="alert alert-success">${result.message}</div>`);
             }).catch((err) => {
                 loading(false)
                 return alert(err)

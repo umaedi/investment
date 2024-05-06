@@ -38,11 +38,10 @@ class AuthController extends Controller
         if($request->ajax()) {
             $response = Http::post(env('APP_SERVER') .'auth/investor/forgot-password', [
                 'email'     => $request->email,
-                'password'  => $request->password,
             ]);
 
             if($response->successful()) {
-                dd('ok');
+                return $this->success('ok', 'Kami telah mengirimkan link untuk reset password ke email Anda. Cek folder inbox atau spam untuk menemukannya.');
             }else {
                 return $response->json();
             }
