@@ -148,8 +148,8 @@
                     class="form-control"
                     type="text"
                     id="bank_name"
-                    name="bank_name"
                     value="{{ $user['bank_name'] }}"
+                    readonly
                   />
                 </div>
                 <div class="mb-3 col-md-6">
