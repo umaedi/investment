@@ -1,4 +1,7 @@
 <table class="table table-bordered">
+  <div class="text-start">
+    <button class="btn mb-3 text-white" style="background-color: #1a9988;">Total Margin: {{ formatRp($totalReturnAmount)  ?? ""}}</button>
+  </div>
   <thead>
     <tr>
       <th>No</th>
@@ -44,5 +47,9 @@
   </tbody>
 </table>
 <div class="text-center">
-  <button class="btn mt-3 text-white" style="background-color: #1a9988;">Total Margin: {{ formatRp($totalReturnAmount)  ?? ""}}</button>
+  <button id="loadMore" class="btn btn-primary d-none" type="button" disabled>
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    Please wait...
+  </button>
+  <button id="btnLoadmore" class="btn my-3 btn-primary" onclick="loadMore()">Loadmore</button>
 </div>

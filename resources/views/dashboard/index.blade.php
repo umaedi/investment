@@ -321,7 +321,7 @@
       var month = '';
       var year = '';
       var start = 0;
-      var length = 50;
+      var length = 2;
       var invest_status = '';
       $(document).ready(function() {
         loadTable();
@@ -443,6 +443,13 @@
         input.value = rupiah(value);
       }
 
+      function loadMore()
+      {
+        $('#btnLoadmore').addClass('d-none');
+        $('#loadMore').removeClass('d-none');
+        length = length * 2;
+        loadTable();
+      }
       
 
       // let minFund = 50000000;
