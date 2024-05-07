@@ -154,11 +154,11 @@
                 </div>
                 <div class="mb-3 col-md-6">
                   <label for="bank_account_number" class="form-label">Bank Account Number</label>
-                  <input class="form-control" type="text" name="bank_account_number" id="bank_account_number" value="{{ $user['bank_account_number'] }}" />
+                  <input class="form-control" type="text" id="bank_account_number" readonly value="{{ $user['bank_account_number'] }}" />
                 </div>
                 <div class="mb-3 col-md-12">
                   <label for="bank_account_name" class="form-label">Bank Account Name</label>
-                  <input class="form-control" type="text" name="bank_account_name" id="bank_account_name" value="{{ $user['bank_account_name'] }}" />
+                  <input class="form-control" type="text" id="bank_account_name" readonly value="{{ $user['bank_account_name'] }}" />
                 </div>
                 {{-- <div class="mb-3 col-md-6">
                   <a href="{{ $user['file_ktp'] }}" class="btn btn-primary btn-block">KTP</a>
