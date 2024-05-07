@@ -26,7 +26,7 @@ class ProfileController extends Controller
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $token,
             'Content-Type' => 'application/json',
-        ])->post('https://dev.duluin.com/api/v1/investor/account/form_account', $data);
+        ])->post(env('APP_SERVER_V1') . 'investor/account/form_account', $data);
         
         if($response->successful()) {
             return $this->success('OK', 'Data has been updated!');
