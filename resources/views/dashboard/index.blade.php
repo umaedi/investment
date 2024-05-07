@@ -149,11 +149,11 @@
                     </label>
                     <input type="text" name="topup" class="form-control" value="Rp 50.000.000" onkeyup="addfundInvesment(this)">
                   </div>
-                  <div class="form-group mb-2">
+                  {{-- <div class="form-group mb-2">
                     <label for="" class="text-white">Spelled Out
                     </label>
                     <input type="text" name="terbilang" class="form-control" value="Lima Puluh Juta Rupiah">
-                  </div>
+                  </div> --}}
                   <div class="form-group">
                     <label for="" class="text-white">Period Month</label>
                     <select name="period" class="form-select" id="">
@@ -170,6 +170,7 @@
                   <input type="hidden" name="alamat" value="{{ $user['address'] }}">
                   <input type="hidden" name="tanggal investment" value="{{ date('D M Y') }}">
                   <input type="hidden" name="no rekening" value="{{ $user['bank_account_number'] }}">
+                  <input type="hidden" name="terbilang" class="form-control" value="......">
                   <input type="hidden" name="nama bank" value="{{ $user['bank_name'] }}">
                   <input type="hidden" name="nama rekening" value="{{ $user['bank_account_name'] }}">
                   <input type="hidden" name="phone" value="{{ $user['phone_number'] }}">
