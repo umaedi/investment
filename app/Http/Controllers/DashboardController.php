@@ -16,7 +16,6 @@ class DashboardController extends Controller
     public function __invoke(Request $request)
     {
         $report =$this->post('investor/report/lender');
-
         if($request->ajax()) {
 
             $params = [
@@ -28,18 +27,38 @@ class DashboardController extends Controller
             ];
             
             $data['table'] = $this->query('investor/report/lender', $params);
-            $totalReturnAmount = 0;
 
-            // Menjumlahkan return_amount dari setiap elemen data
+            $totalReturnAmount = 0;
+            $totalReturn = 0;
+            $totalMargin = 0;
+
             foreach ($data['table']['data'] as $item) {
-                $totalReturnAmount += $item['margin'];
+                $totalReturnAmount += $item['invest_amount'];
             }
             $data['totalReturnAmount'] = $totalReturnAmount;
+
+            foreach ($data['table']['data'] as $item) {
+                $totalReturn += $item['return_amount'];
+            }
+            $data['totalReturn'] =  $totalReturn;
+            
+            foreach ($data['table']['data'] as $item) {
+                $totalMargin += $item['margin'];
+            }
+            $data['totalMargin'] = $totalMargin;
+
             return view('dashboard._data_table', $data);
         }
         $data['title'] = 'Dashboard Lender';
-        $data['static_report'] = $this->get('investor/report/static');
-        $data['user'] = $this->get('investor/account');
+
+        $data['static_report'] = Cache::remember($request->token . '_static_report', 3600, function() {
+            return $this->get('investor/report/static');
+        });
+        
+        $data['user'] = Cache::remember($request->token . '_user', 3600, function() {
+            return $this->get('investor/account');
+        });
+
         // dd($data['user']);
         return view('dashboard.index', $data);
     }

@@ -18,9 +18,11 @@ class CheckAccessToken
     public function handle(Request $request, Closure $next)
     {
         // Periksa apakah access token tersedia di cookie atau tidak
-        if(!isset($_COOKIE['access_token'])) {
+        $token = $_COOKIE['access_token'];
+        if(!isset($token)) {
             return redirect('/'); // Redirect jika access token tidak tersedia
         }
+        $request->merge(['token' => $token]);
         return $next($request);
     }
 }

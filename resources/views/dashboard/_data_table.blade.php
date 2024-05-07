@@ -1,6 +1,8 @@
 <table class="table table-bordered">
   <div class="text-start">
-    <button class="btn mb-3 text-white" style="background-color: #1a9988;">Total Margin: {{ formatRp($totalReturnAmount)  ?? ""}}</button>
+    <button class="btn mb-3 text-white" style="background-color: #1a9988;">Total Loan Amount: {{ formatRp($totalReturnAmount)  ?? ""}}</button>
+    <button class="btn mb-3 text-white" style="background-color: #1a9988;">Total Return: {{ formatRp($totalReturn)  ?? ""}}</button>
+    <button class="btn mb-3 text-white" style="background-color: #1a9988;">Total Margin: {{ formatRp($totalMargin)  ?? ""}}</button>
   </div>
   <thead>
     <tr>
