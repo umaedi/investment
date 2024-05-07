@@ -322,7 +322,7 @@
       var month = '';
       var year = '';
       var start = 0;
-      var length = 2;
+      var length = 50;
       var invest_status = '';
       $(document).ready(function() {
         loadTable();
