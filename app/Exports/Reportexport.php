@@ -20,6 +20,8 @@ class ReportExport implements FromView, WithHeadings
     public function view(): View
     {
         $totalReturnAmount = 0;
+        $totalReturn = 0;
+        $totalMargin = 0;
             // Menjumlahkan return_amount dari setiap elemen data
             foreach ($this->data['data'] as $item) {
                 $totalReturnAmount += $item['margin'];
@@ -27,7 +29,9 @@ class ReportExport implements FromView, WithHeadings
             $data['totalReturnAmount'] = '';
         return view('dashboard._data_table', [
             'table' => $this->data,
-            'totalReturnAmount' => $totalReturnAmount
+            'totalReturnAmount' => $totalReturnAmount,
+            'totalReturn' =>  $totalReturn,
+            'totalMargin' => $totalMargin
         ]);
     }
 
