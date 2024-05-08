@@ -42,7 +42,7 @@
                 <div class="col-md-8">
                   <div class="card-body">
                     <h5 class="card-title text-white">Total Fund </h5>
-                    <h3 class="card-text text-white fw-bold">
+                    <h3 class="card-text text-white">
                       {{ formatRp($static_report['current']['total_investment']) }}
                     </h3>
                   </div>
@@ -190,20 +190,16 @@
           <div class="card-body">
             <div class="row filter-transaction">
               <div class="col-md-2">
-                <select class="form-select" id="month">
-                  {{-- <option value="">--select month--</option> --}}
-                  <option value="01">January</option>
-                  <option value="02">February</option>
-                  <option value="03">March</option>
-                  <option value="04">April</option>
-                  <option value="05">May</option>
-                  <option value="06">June</option>
-                  <option value="07">July</option>
-                  <option value="08">August</option>
-                  <option value="09">September</option>
-                  <option value="10">October</option>
-                  <option value="11">November</option>
-                  <option value="12">December</option>
+                  <select class="form-select" id="month" name="month">
+                    @php
+                        $bulanSaatIni = date('n');
+                    @endphp
+                    <option value="">All Month</option>
+                    @for ($bulan = 1; $bulan <= 12; $bulan++)
+                        <option value="{{ $bulan }}" {{ $bulan == $bulanSaatIni ? 'selected' : '' }}>
+                            {{ date('F', mktime(0, 0, 0, $bulan, 1)) }}
+                        </option>
+                    @endfor
                 </select>
               </div>
               <div class="col-md-2">
@@ -223,15 +219,15 @@
               <div class="col-md-2">
                 <select class="form-select" id="page" name="length">
                   {{-- <option value="">--perpage--</option> --}}
-                  <option value="10">10</option>
-                  <option value="25">25</option>
                   <option value="50">50</option>
+                  <option value="25">25</option>
+                  <option value="10">10</option>
                 </select>
               </div>
               <div class="col-md-2">
                 <select class="form-select" name="invest_status" id="status">
                   {{-- <option value="">--status--</option> --}}
-                  <option value="">Show All Status</option>
+                  <option value="">All Status</option>
                   <option value="disbursed">Disbursed</option>
                   <option value="repayment">Repayment</option>
                 </select>
@@ -325,8 +321,8 @@
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 <script type="text/javascript" src="{{ asset('js/sweetalert.min.js') }}"></script>
     <script type="text/javascript">
-      var month = '';
-      var year = '';
+      var month = $('#month').val();
+      var year = $('#year').val();
       var start = 0;
       var length = 50;
       var invest_status = '';
@@ -337,9 +333,6 @@
       $('#month').change(function() {
          month = $('#month').val();
          year = $('#year').val();
-         if(year == '') {
-          return alert('Please select year');
-         }
          length = $('#page').val();
          invest_status = $('#status').val();
          loadTable();
@@ -348,9 +341,6 @@
       $('#status').change(function() {
          month = $('#month').val();
          year = $('#year').val();
-         if(year == '') {
-          return alert('Please select year');
-         }
          length = $('#page').val();
          invest_status = $('#status').val();
          loadTable();

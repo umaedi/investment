@@ -43,21 +43,22 @@
     @endforelse
   </tbody>
 </table>
-<div class="text-center">
-  <button id="loadMore" class="btn btn-primary mt-3 d-none" type="button" disabled>
-    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-    Please wait...
-  </button>
-  <button id="btnLoadmore" class="btn my-3 btn-primary" onclick="loadMore()">Loadmore</button>
-</div>
-<script type="text/javascript">
-  $("#total").html(
-    `
 
-        <button class="btn text-white xbtn mb-1" style="background-color: #1a9988;">Total Loan Amount: {{ formatRp($totalReturnAmount) }}</button>
-        <button class="btn text-white xbtn mb-1" style="background-color: #1a9988;">Total Return: {{ formatRp($totalReturn) }}</button>
-        <button class="btn text-white xbtn mb-1" style="background-color: #1a9988;">Total Margin: {{ formatRp($totalMargin) }}</button>
-    
-    `
-  )
-</script>
+<div class="mt-3">
+  <div class="row align-items-center">
+    <div class="col-4 col-md-9">
+      <button class="btn text-white" style="background-color: #1a9988;">Total Loan Amount: {{ formatRp($totalReturnAmount) }}</button>
+      <button class="btn text-white" style="background-color: #1a9988;">Total Return: {{ formatRp($totalReturn) }}</button>
+      <button class="btn text-white" style="background-color: #1a9988;">Total Margin: {{ formatRp($totalMargin) }}</button>
+    </div>
+    <div class="col-md-3"> 
+      <div class="text-end"> 
+        <button id="loadMore" class="btn btn-primary d-none" type="button" disabled>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Please wait...
+        </button>
+        <button id="btnLoadmore" class="btn btn-primary xbtn" onclick="loadMore()">Loadmore</button>
+      </div>
+    </div>
+  </div>
+</div>
