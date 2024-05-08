@@ -243,6 +243,9 @@
                 <a href="/lender/print/transction" class="btn btn-primary btn-block"><i class='bx bx-printer' ></i> PDF/Print</a>
               </div>
             </div>
+            <div id="total" class="mt-3">
+
+            </div>
           </div>
         </div>
       </div>
@@ -255,6 +258,9 @@
             </button>
           </div>
         </div>
+        {{-- <div id="total">
+         
+        </div> --}}
           <div class="card mt-3">
             <div class="card-body">
               <div class="table-responsive text-nowrap" id="dataTable">

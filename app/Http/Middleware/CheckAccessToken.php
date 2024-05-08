@@ -22,7 +22,7 @@ class CheckAccessToken
         if(!isset($token)) {
             return redirect('/'); // Redirect jika access token tidak tersedia
         }
-        $request->merge(['token' => $token]);
+        $request->merge(['access_token' => $token]);
         return $next($request);
     }
 }

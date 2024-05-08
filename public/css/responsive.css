@@ -1,42 +1,48 @@
 @media (max-width: 576px) {
     .hero-title {
-      text-align: center;
+        text-align: center;
     }
     .title {
-      font-size: 18px;
+        font-size: 18px;
     }
     .filter-transaction {
-      gap: 3px;
+        gap: 3px;
     }
     .current-transaction {
-      width: 50%;
+        width: 50%;
     }
     .since-exsist {
-      width: 50%;
+        width: 50%;
     }
 
     .funding-balance {
-      width: 100%;
-      margin-bottom: 5px;
+        width: 100%;
+        margin-bottom: 5px;
     }
     .xmt-3 {
-      margin-top: 15px;
+        margin-top: 15px;
     }
-    
-  }
-  @media (max-width: 768px) {
+
+    .xbtn {
+        width: 100%;
+    }
+}
+@media (max-width: 768px) {
     .hero-title {
         font-size: 16pxs;
     }
     .filter-transaction {
-      gap: 3px;
+        gap: 3px;
     }
     .xmt-3 {
-      margin-top: 15px;
+        margin-top: 15px;
     }
-  }
-  @media (min-width: 992px) {
-    .container-lg, .container-md, .container-sm, .container {
-      max-width: 960px;
+}
+@media (min-width: 992px) {
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container {
+        max-width: 960px;
     }
-  }
+}
