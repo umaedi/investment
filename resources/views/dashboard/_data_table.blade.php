@@ -45,11 +45,11 @@
   <tfoot>
     <tr>
       <td></td>
+      <td>Total: </td>
+      <td>Loan Amount: {{ formatRp($totalReturnAmount) }}</td>
       <td></td>
-      <td>Total Loan Amount: {{ formatRp($totalReturnAmount) }}</td>
-      <td></td>
-      <td>Total Return: {{ formatRp($totalReturn) }}</td>
-      <td>Total Margin: {{ formatRp($totalMargin) }}</td>
+      <td>Return: {{ formatRp($totalReturn) }}</td>
+      <td>Margin: {{ formatRp($totalMargin) }}</td>
       <td></td>
       <td></td>
       <td></td>
