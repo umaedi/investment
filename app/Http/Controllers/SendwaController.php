@@ -15,10 +15,11 @@ class SendwaController extends Controller
      */
     public function __invoke(Request $request)
     {
+        // '6282128600231', 'bang Mahen 6282128600231', 'pak Figra 628970844853, bang Radius 62811222692'
         {
-            $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjA2OWY5NWJhNTFkMDJkNTgwYjY0MGEiLCJmdWxsTmFtZSI6IkR1bHVpbiIsImZpcnN0TmFtZSI6IkR1bHVpbiIsIm1pZGRsZU5hbWUiOiIiLCJsYXN0TmFtZSI6IkR1bHVpbiIsIm1vYmlsZXBob25lIjoiNjI4MTcwMDMxMDAwIiwiY291bnRyeUNvZGUiOiIiLCJyb2xlIjoiY2xpZW50IiwiZXhwIjoxNzE0NTIxNTk5MDAwLCJpYXQiOjE3MTQyNDA2NTksImlzcyI6ImtpcmltcGVzYW4ucmlzdGVrbXVzbGltLmNvbSJ9.9DyZYZ-pXSn4rOUBTINWiwHd75wOpSpc0O4F-JV_4oE';
+            $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjA2OWY5NWJhNTFkMDJkNTgwYjY0MGEiLCJmdWxsTmFtZSI6IkR1bHVpbiIsImZpcnN0TmFtZSI6IkR1bHVpbiIsIm1pZGRsZU5hbWUiOiIiLCJsYXN0TmFtZSI6IkR1bHVpbiIsIm1vYmlsZXBob25lIjoiNjI4MTcwMDMxMDAwIiwiY291bnRyeUNvZGUiOiIiLCJyb2xlIjoiY2xpZW50IiwiZXhwIjoxNzE1NDcxOTk5MDAwLCJpYXQiOjE3MTUyNjgzMDgsImlzcyI6ImtpcmltcGVzYW4ucmlzdGVrbXVzbGltLmNvbSJ9.XlQp6x4pVtH3-hTP4HPIsBcrfI-sXMNb-NLGUSd5bvg';
             $instanceID = '66069f95c302c5956ac9ca24';
-            $phone_number = '628970844853';
+            $phoneNumbers = ['6285741492045','6282128600231','628970844853', '62811222692'];
             $message = '
 *Halo Bapak/Ibu '. $request->NAME .'*
 
@@ -43,11 +44,11 @@ Jika ada pertanyaan lebih lanjut, silakan menghubungi di:
             
 Terima kasih.
             ';
-    
-            $response = Http::withToken($token)
+            foreach ($phoneNumbers as $phoneNumber) {
+                $response = Http::withToken($token)
                 ->post('https://apiks.ristekmuslim.com/client/v1/message/send-text', [
                     'instanceID'    => $instanceID,
-                    'phone'         => $phone_number,
+                    'phone'         => $phoneNumber,
                     'message'       => $message,
                     'serverSend'    => 'false'
                 ]);
@@ -56,6 +57,7 @@ Terima kasih.
                 $responseData = $response->json();
             } else {
                 $errorMessage = $response->body();
+            }
             }
         }
     }

@@ -168,7 +168,7 @@
                   <input type="hidden" name="Name Proper" value="{{ $user['name'] }}">
                   <input type="hidden" name="NIK" value="{{ $user['nik'] }}">
                   <input type="hidden" name="alamat" value="{{ $user['address'] }}">
-                  <input type="hidden" name="tanggal investment" value="{{ date('D M Y') }}">
+                  <input type="hidden" name="tanggal investment" value="{{ date('j F Y') }}">
                   <input type="hidden" name="no rekening" value="{{ $user['bank_account_number'] }}">
                   <input type="hidden" name="terbilang" class="form-control" value="......">
                   <input type="hidden" name="nama bank" value="{{ $user['bank_name'] }}">
@@ -403,7 +403,7 @@
 
         sendWhatsApp(data);
         fetch(scriptURL, { method: 'POST', body: data})
-          .then(response => sendWhatsApp(response))
+          .then(response => console.log(response))
           .catch(error => console.error('Error!', error.message))
           swal({ title: 'Success', text: "Add Fund Investment Succes!", icon: 'success' });
       })
