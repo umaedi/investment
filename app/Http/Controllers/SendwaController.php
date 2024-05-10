@@ -27,7 +27,7 @@ class SendwaController extends Controller
             if($response->successful()) {
                 $token = $responseData['data']['token'];
                 Cache::put('token', $token, 172800);
-                return $this->success('OK', 'Add Fund Investment Succes!');
+                // return $this->success('OK', 'Add Fund Investment Succes!');
             }else {
                 return $this->error('Internal Server Error!');
             }
@@ -54,34 +54,19 @@ Realisasi penempatan melalui rekening :
 *Bank :* Bank Mandiri
 *Rekening :* 1300003366880
 ------------------------------------
-            
+
 Jika ada pertanyaan lebih lanjut, silakan menghubungi di:
-            
+
 *Email:* hello@duluin.com
 *No. Telp:* 08170031000
-            
+
 Terima kasih.
             ';
-            foreach ($phoneNumbers as $phoneNumber) {
-                $response = Http::withToken($token)
-                ->post('https://apiks.ristekmuslim.com/client/v1/message/send-text', [
-                    'instanceID'    => $instanceID,
-                    'phone'         => $phoneNumber,
-                    'message'       => $message,
-                    'serverSend'    => 'false'
-                ]);
-    
-            if ($response->successful()) {
-                $responseData = $response->json();
-            } else {
-                $errorMessage = $response->body();
-            }
-            }
 
             $nomorWhatsAppBaru = "62" . substr($request->phone, 1);
             $messagePersonal = '
 *Hi '. $request->NAME .'*
-            
+
 Permintanaan penambahan dana sudah kami terima, PIC funding kami segera menghubungi bapak / ibu';
             $response = Http::withToken($token)
                         ->post('https://apiks.ristekmuslim.com/client/v1/message/send-text', [
@@ -90,13 +75,46 @@ Permintanaan penambahan dana sudah kami terima, PIC funding kami segera menghubu
                             'message'       => $messagePersonal,
                             'serverSend'    => 'false'
                         ]);
-            
-                    if ($response->successful()) {
-                        return $this->success('ok', $response->body());
-                    } else {
-                        $errorMessage = $response->body();
-                        return $this->error($errorMessage);
-                    }
+
+                        $responseData = $response->json();
+                        if($response->successful()) {
+                            // Periksa apakah status respons adalah 'success'
+                            if($responseData['status'] === 'success') {
+                                $token = $responseData['data']['token'];
+                                // Simpan token dalam cache untuk 2 hari (172800 detik)
+                                Cache::put('token', $token, 172800);
+                                // Gunakan token untuk operasi selanjutnya di sini
+                            } else {
+                                // Respons tidak berhasil karena status bukan 'success'
+                                $response = Http::post('https://apiks.ristekmuslim.com/public/v1/client/login', [
+                                    "uid" => "628170031000",
+                                    "pass" => "JiNgvO"
+                                ]);
+                                $responseData = $response->json();
+                    
+                                    $token = $responseData['data']['token'];
+                                    Cache::put('token', $token, 172800);
+                            }
+                        } else {
+                            return $this->error("Internal Server Error!");
+                        }
+
+
+            foreach ($phoneNumbers as $phoneNumber) {
+                $response = Http::withToken($token)
+                ->post('https://apiks.ristekmuslim.com/client/v1/message/send-text', [
+                    'instanceID'    => $instanceID,
+                    'phone'         => $phoneNumber,
+                    'message'       => $message,
+                    'serverSend'    => 'false'
+                ]);
+
+            if ($response->successful()) {
+                $responseData = $response->json();
+            } else {
+                $errorMessage = $response->body();
+            }
+            }
         }
     }
 }

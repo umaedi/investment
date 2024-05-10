@@ -42,14 +42,14 @@
     </tr>
     @endforelse
   </tbody>
-  <tfoot>
+  <tfoot class="fw-bold">
     <tr>
       <td></td>
       <td>Total: </td>
-      <td>Loan Amount: {{ formatRp($totalReturnAmount) }}</td>
+      <td>{{ formatRp($totalReturnAmount) }}</td>
       <td></td>
-      <td>Return: {{ formatRp($totalReturn) }}</td>
-      <td>Margin: {{ formatRp($totalMargin) }}</td>
+      <td>{{ formatRp($totalReturn) }}</td>
+      <td>{{ formatRp($totalMargin) }}</td>
       <td></td>
       <td></td>
       <td></td>
