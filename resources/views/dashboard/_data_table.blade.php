@@ -42,11 +42,31 @@
     </tr>
     @endforelse
   </tbody>
+  <tfoot>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>Total Loan Amount: {{ formatRp($totalReturnAmount) }}</td>
+      <td></td>
+      <td>Total Return: {{ formatRp($totalReturn) }}</td>
+      <td>Total Margin: {{ formatRp($totalMargin) }}</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tfoot>
 </table>
 
 <div class="mt-3">
-  <div class="row align-items-center">
-    <div class="col-4 col-md-9">
+  {{-- <div class="row align-items-center"> --}}
+      <div class="text-center"> 
+        <button id="loadMore" class="btn btn-primary d-none" type="button" disabled>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Please wait...
+        </button>
+        <button id="btnLoadmore" class="btn btn-primary xbtn" onclick="loadMore()">Loadmore</button>
+      </div>
+    {{-- <div class="col-4 col-md-9">
       <button class="btn text-white" style="background-color: #1a9988;">Total Loan Amount: {{ formatRp($totalReturnAmount) }}</button>
       <button class="btn text-white" style="background-color: #1a9988;">Total Return: {{ formatRp($totalReturn) }}</button>
       <button class="btn text-white" style="background-color: #1a9988;">Total Margin: {{ formatRp($totalMargin) }}</button>
@@ -59,6 +79,6 @@
         </button>
         <button id="btnLoadmore" class="btn btn-primary xbtn" onclick="loadMore()">Loadmore</button>
       </div>
-    </div>
-  </div>
+    </div> --}}
+  {{-- </div> --}}
 </div>
