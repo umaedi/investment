@@ -182,7 +182,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
-        Ladumor\LaravelPwa\PWAServiceProvider::class,
+        // Ladumor\LaravelPwa\PWAServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -212,7 +212,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-        'LaravelPwa' => \Ladumor\LaravelPwa\LaravelPwa::class,
+        // 'LaravelPwa' => \Ladumor\LaravelPwa\LaravelPwa::class,
     ])->toArray(),
 
 ];
