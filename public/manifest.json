@@ -1,0 +1,17 @@
+{
+    "name": "Stake",
+    "short_name": "Stake",
+    "start_url": "/index.php",
+    "background_color": "#1a9988",
+    "description": "Lender Financial Reporting Dashboard",
+    "display": "standalone",
+    "theme_color": "#1a9988",
+    "icons": [
+        {
+            "src": "logo.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}

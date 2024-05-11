@@ -21,7 +21,9 @@
     <link rel="stylesheet" href="{{ asset('vendor') }}/css/theme-default.css" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="{{ asset('css') }}/demo.css" />
     <link rel="stylesheet" href="{{ asset('css') }}/responsive.css" />
-    <script src="{{ asset('js') }}/config.js"></script>
+    <!-- PWA  -->
+    <link rel="apple-touch-icon" href="{{ asset('logo.png') }}">
+    <link rel="manifest" href="{{ asset('/manifest.json') }}">
   </head>
 
   <body>
@@ -50,19 +52,27 @@
     {{-- <script src="{{ asset('vendor') }}/js/menu.js"></script> --}}
     {{-- <script async defer src="https://buttons.github.io/buttons.js"></script> --}}
     <script type="text/javascript">
-      async function transAjax(data) {
-        html = null;
-        data.headers = {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    $(document).ready(function sw() {
+        if (!navigator.serviceWorker.controller) {
+            navigator.serviceWorker.register("/sw.js").then(function(reg) {
+                console.log("Service worker has been registered for scope: " + reg.scope);
+            });
         }
-        await $.ajax(data).done(function(res) {
-            html = res;
-        })
-            .fail(function() {
-                return false;
-            })
-        return html
+    })
+
+    async function transAjax(data) {
+      html = null;
+      data.headers = {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       }
+      await $.ajax(data).done(function(res) {
+          html = res;
+      })
+          .fail(function() {
+              return false;
+          })
+      return html
+    }
     </script>
     @stack('js')
   </body>
