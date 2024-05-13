@@ -22,8 +22,8 @@
     <link rel="stylesheet" href="{{ asset('css') }}/demo.css" />
     <link rel="stylesheet" href="{{ asset('css') }}/responsive.css" />
     <!-- PWA  -->
-    {{-- <link rel="apple-touch-icon" href="{{ asset('logo.png') }}">
-    <link rel="manifest" href="{{ asset('/manifest.json') }}"> --}}
+    <link rel="apple-touch-icon" href="{{ asset('logo.png') }}">
+    <link rel="manifest" href="{{ asset('/manifest.json') }}">
   </head>
 
   <body>
@@ -52,13 +52,13 @@
     {{-- <script src="{{ asset('vendor') }}/js/menu.js"></script> --}}
     {{-- <script async defer src="https://buttons.github.io/buttons.js"></script> --}}
     <script type="text/javascript">
-    // $(document).ready(function sw() {
-    //     if (!navigator.serviceWorker.controller) {
-    //         navigator.serviceWorker.register("/sw.js").then(function(reg) {
-    //             console.log("Service worker has been registered for scope: " + reg.scope);
-    //         });
-    //     }
-    // })
+    $(document).ready(function sw() {
+        if (!navigator.serviceWorker.controller) {
+            navigator.serviceWorker.register("/sw.js").then(function(reg) {
+                console.log("Service worker has been registered for scope: " + reg.scope);
+            });
+        }
+    })
 
     async function transAjax(data) {
       html = null;
