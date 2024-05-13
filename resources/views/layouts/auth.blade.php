@@ -31,6 +31,9 @@
     <link rel="stylesheet" href="{{ asset('vendor') }}/css/theme-default.css" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="{{ asset('vendor') }}/fonts/boxicons.css" />
     <link rel="stylesheet" href="{{ asset('vendor') }}/css/pages/page-auth.css" />
+    <!-- PWA  -->
+    <link rel="apple-touch-icon" href="{{ asset('logo.png') }}">
+    <link rel="manifest" href="{{ asset('/manifest.json') }}">
   </head>
 
   <body>
@@ -42,6 +45,13 @@
     <!-- Main JS -->
     {{-- <script src="{{ asset('js') }}/main.js"></script> --}}
     <script type="text/javascript">
+        $(document).ready(function sw() {
+        if (!navigator.serviceWorker.controller) {
+            navigator.serviceWorker.register("/sw.js").then(function(reg) {
+                console.log("Service worker has been registered for scope: " + reg.scope);
+            });
+        }
+    })
     async function transAjax(data) {
       html = null;
       data.headers = {
