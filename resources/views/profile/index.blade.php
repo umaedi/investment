@@ -5,12 +5,14 @@
     <div class="row">
       <div class="col-md-6 mb-3">
         <ul class="nav nav-pills flex-column flex-md-row mb-3">
+          <a href="/lender/dashboard" class="btn btn-primary me-2"><i class='bx bx-log-out'></i> Back</a>
           <li class="nav-item d-flex">
-            <a class="nav-link active me-2" href="javascript:void(0);"><i class="bx bx-user me-1"></i> Account</a>
-            <form id="logout">
-              <button id="btnLogout" type="submit" class="btn btn-danger">Logout</button>
-            </form>
+            <a class="nav-link active me-2" style="pointer-events: none; cursor: default;"><i class="bx bx-user me-1"></i> Account</a>
           </li>
+          <button  class="btn btn-warning me-2" data-bs-toggle="modal" data-bs-target="#resetPwModal"><i class='bx bx-code-alt'></i> Reset Password</button>
+          <form id="logout">
+            <button id="btnLogout" type="submit" class="btn btn-danger"><i class='bx bx-exit'></i> Logout</button>
+          </form>
           <button id="btnLogoutLoading" class="btn btn-danger d-none" type="button">
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             Please wait...
@@ -102,8 +104,8 @@
                   <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                   Please wait...
                 </button>
-                <button id="btnSubmit" type="submit" class="btn btn-primary me-2">Save changes</button>
-                <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                <button id="btnSubmit" type="submit" class="btn btn-primary"><i class='bx bx-save'></i> Save changes</button>
+                <button type="reset" class="btn btn-outline-secondary"><i class='bx bx-reset'></i> Reset</button>
               </div>
           </div>
           <!-- /Account -->
@@ -112,7 +114,7 @@
       <div class="col-md-6">
         <ul class="nav nav-pills flex-column flex-md-row mb-3">
           <li class="nav-item">
-            <a class="nav-link active" href="javascript:void(0);"><i class="bx bx-user me-1"></i>Emergency Information</a>
+            <a class="nav-link active" style="pointer-events: none; cursor: default;"><i class="bx bx-user me-1"></i>Emergency Information</a>
           </li>
         </ul>
         <div class="card">
@@ -139,6 +141,7 @@
               </div>
             </div>
         </div>
+      </form>
         <div class="card mt-3">
           <div class="card-body">
               <div class="row">
@@ -191,8 +194,8 @@
     <div class="col-md-12">
         <div class="my-3">
         {{-- <button class="btn btn-primary funding-balance"><i class='bx bx-credit-card-alt'></i>Funding Balance</button> --}}
-        <a href="/lender/export/funding_balance" class="btn btn-primary"><i class='bx bx-spreadsheet'></i>Export</a>
-        <a href="/lender/print/funding_balance" class="btn btn-primary"><i class='bx bx-printer' ></i>PDF/Print</a>
+        <a href="/lender/export/funding_balance" class="btn btn-primary"><i class='bx bx-spreadsheet'></i> Export</a>
+        <a href="/lender/print/funding_balance" class="btn btn-primary"><i class='bx bx-printer' ></i> PDF/Print</a>
     </div>
       <div class="card mb-4">
         <button id="loading" class="btn btn-primary d-none" type="button">
@@ -222,6 +225,34 @@
         </div>
     </div>
     </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="resetPwModal" tabindex="-1" aria-labelledby="resetPwModalModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="resetPwModalModalLabel">Reset Password</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="formAuthentication" class="mb-3">
+          <div class="mb-3">
+            <input type="hidden" name="email_reset_password" value="{{ $user['email'] }}">
+            <p>Are you sure you want to change your password?</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button id="btn_loading_reset_pw" class="btn btn-primary d-none" type="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Please wait...
+          </button>
+          <button id="btn_submit_reset_pw" type="submit" class="btn btn-primary">Send Reset Link</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 @endsection
 @push('js')
@@ -342,5 +373,37 @@
         }
 
       });
+
+      //reset pw
+      $('#formAuthentication').submit(async function(e) {
+            e.preventDefault();
+
+            var param = {
+                url: '/lender/forgot-password',
+                method: 'GET',
+                data: {email: '{{ $user['email'] }}'}
+            }
+
+            loadingReset(true)
+            await transAjax(param).then((result) => {
+                loadingReset(false)
+                $('#resetPwModal').modal('hide');
+                swal({ title: 'Success', text: result.message, icon: 'success' });
+            }).catch((err) => {
+                loadingReset(false)
+                $('#resetPwModal').modal('hide');
+                swal({ title: 'Success', text: "Internal Server Error!", icon: 'error' });
+            });
+        });
+
+        function loadingReset(state) {
+            if(state) {
+                $('#btn_loading_reset_pw').removeClass('d-none');
+                $('#btn_submit_reset_pw').addClass('d-none');
+            }else {
+                $('#btn_loading_reset_pw').addClass('d-none');
+                $('#btn_submit_reset_pw').removeClass('d-none');
+            }
+        }
     </script>
 @endpush

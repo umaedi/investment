@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="{{ asset('vendor') }}/css/theme-default.css" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="{{ asset('css') }}/demo.css" />
     <link rel="stylesheet" href="{{ asset('css') }}/responsive.css" />
+     <!-- Icons. Uncomment required icon fonts -->
+     <link rel="stylesheet" href="{{ asset('vendor') }}/fonts/boxicons.css" />
     <!-- PWA  -->
     <link rel="apple-touch-icon" href="{{ asset('logo.png') }}">
     <link rel="manifest" href="{{ asset('/manifest.json') }}">

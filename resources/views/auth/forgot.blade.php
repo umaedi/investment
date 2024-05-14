@@ -48,7 +48,7 @@
             var email = $('#email').val();
 
             var param = {
-                url: '{{ url()->current() }}',
+                url: '/lender/forgot-passwordx',
                 method: 'GET',
                 data: {email: email}
             }
