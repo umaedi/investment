@@ -21,13 +21,13 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
-        // dd($request->all());
+        // https://dev.duluin.com/api/v1/investor/account/form_account
         $token = $_COOKIE['access_token'];
         $data = $request->except('_token', 'access_token', 'nik');
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $token,
             'Content-Type' => 'application/json',
-        ])->post('https://dev.duluin.com/api/v1/investor/account/form_account', $data);
+        ])->post(env('APP_SERVER_V1') . 'investor/account/form_account', $data);
         if($response->successful()) {
             return $this->success('OK', 'Data has been updated!');
         }else {
