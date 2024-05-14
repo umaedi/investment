@@ -15,7 +15,7 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $report =$this->post('investor/report/lender');
+        // $report =$this->post('investor/report/lender');
         if($request->ajax()) {
 
             $params = [
@@ -27,7 +27,6 @@ class DashboardController extends Controller
             ];
             
             $data['table'] = $this->query('investor/report/lender', $params);
-
             $totalReturnAmount = 0;
             $totalReturn = 0;
             $totalMargin = 0;
