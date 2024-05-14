@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{ asset('css') }}/responsive.css" />
      <!-- Icons. Uncomment required icon fonts -->
      <link rel="stylesheet" href="{{ asset('vendor') }}/fonts/boxicons.css" />
+     @stack('css')
     <!-- PWA  -->
     <link rel="apple-touch-icon" href="{{ asset('logo.png') }}">
     <link rel="manifest" href="{{ asset('/manifest.json') }}">

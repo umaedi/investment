@@ -1,4 +1,12 @@
 @extends('layouts.main')
+@push('css')
+<style>
+  /* Custom CSS for centering text */
+  .swal-modal .swal-text {
+    text-align: center;
+}
+</style>
+@endpush
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="fw-bold py-3 mb-4"><span class="fw-light"><a href="/lender/dashboard">Dashboard</a>/</span> Account</h4>
@@ -388,7 +396,10 @@
             await transAjax(param).then((result) => {
                 loadingReset(false)
                 $('#resetPwModal').modal('hide');
-                swal({ title: 'Success', text: result.message, icon: 'success' });
+                swal({ title: 'Success', 
+                text: "We have sent a link to reset your password to your email. Check your inbox or spam folder to find it.", 
+                icon: 'success',
+              });
             }).catch((err) => {
                 loadingReset(false)
                 $('#resetPwModal').modal('hide');
