@@ -25,7 +25,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-8 mb-2 order-0">
+      <div class="col-lg-6 mb-2 order-0">
         <div class="row">
           <div class="col-12 col-md-6">
             <button class="btn btn-primary w-100 mb-3 fw-bold" style="font-size: 16px" id="currentTransaction">Current Transaction</button>
@@ -38,8 +38,8 @@
           {{-- <h5>Current Transaction</h5> --}}
           <div class="col-lg-6">
             <div class="card mb-3 xmt-3" style="background-color: #fa5d48">
-              <div class="row">
-                <div class="col-md-8">
+              {{-- <div class="row"> --}}
+                <div class="col-md-12">
                   <div class="card-body">
                     <h5 class="card-title text-white">Total Fund </h5>
                     <h3 class="card-text text-white">
@@ -47,13 +47,13 @@
                     </h3>
                   </div>
                 </div>
-              </div>
+              {{-- </div> --}}
             </div>
           </div>
           <div class="col-md-6">
             <div class="card mb-3" style="background-color: #fa5d48">
-              <div class="row g-0">
-                <div class="col-md-8">
+              {{-- <div class="row g-0"> --}}
+                <div class="col-md-12">
                   <div class="card-body">
                     <h5 class="card-title text-white">Amount Disbursed</h5>
                     <h3 class="card-text text-white">
@@ -61,13 +61,13 @@
                     </h3>
                   </div>
                 </div>
-              </div>
+              {{-- </div> --}}
             </div>
           </div>
           <div class="col-md-6">
             <div class="card mb-3" style="background-color: #fa5d48">
-              <div class="row g-0">
-                <div class="col-md-8">
+              {{-- <div class="row g-0"> --}}
+                <div class="col-md-12">
                   <div class="card-body">
                     <h5 class="card-title text-white">Total Transactions</h5>
                     <h3 class="card-text text-white">
@@ -75,13 +75,13 @@
                     </h3>
                   </div>
                 </div>
-              </div>
+              {{-- </div> --}}
             </div>
           </div>
           <div class="col-md-6">
             <div class="card mb-3" style="background-color: #fa5d48">
-              <div class="row g-0">
-                <div class="col-md-8">
+              {{-- <div class="row g-0"> --}}
+                <div class="col-md-12">
                   <div class="card-body">
                     <h5 class="card-title text-white">Available Fund</h5>
                     <h3 class="card-text text-white">
@@ -89,13 +89,13 @@
                     </h3>
                   </div>
                 </div>
-              </div>
+              {{-- </div> --}}
             </div>
           </div>
         </div>
         <div class="row mt-3 d-none" id="rowSinceExist">
           {{-- <h5>Current Transaction</h5> --}}
-          <div class="col-lg-4">
+          <div class="col-lg-6">
             <div class="card mb-3" style="background-color: #fa5d48">
               {{-- <div class="row g-0">
                 <div class="col-md-8"> --}}
@@ -109,7 +109,7 @@
               </div> --}}
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-6">
             <div class="card mb-3" style="background-color: #fa5d48">
               {{-- <div class="row g-0">
                 <div class="col-md-8"> --}}
@@ -123,7 +123,7 @@
               </div> --}}
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-6">
             <div class="card mb-3" style="background-color: #fa5d48">
               {{-- <div class="row g-0">
                 <div class="col-md-8"> --}}
@@ -139,7 +139,7 @@
           </div>
         </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-3 mb-3">
             <button class="btn mb-3 w-100 fw-bold text-white" style="background-color: #1a9988; font-size: 16px;pointer-events: none; cursor: default;">Add Fund Investment</button>
             <div class="card" style="background-color: #1a9988">
               <div class="card-body">
@@ -149,11 +149,6 @@
                     </label>
                     <input type="text" name="topup" class="form-control" value="Rp 50.000.000" onkeyup="addfundInvesment(this)">
                   </div>
-                  {{-- <div class="form-group mb-2">
-                    <label for="" class="text-white">Spelled Out
-                    </label>
-                    <input type="text" name="terbilang" class="form-control" value="Lima Puluh Juta Rupiah">
-                  </div> --}}
                   <div class="form-group">
                     <label for="" class="text-white">Period Month</label>
                     <select name="period" class="form-select" id="">
@@ -175,7 +170,31 @@
                   <input type="hidden" name="nama rekening" value="{{ $user['bank_account_name'] }}">
                   <input type="hidden" name="phone" value="{{ $user['phone_number'] }}">
                   <input type="hidden" name="email" value="{{ $user['email'] }}">
-                  <button id="ceratespk" type="submit" class="btn btn-warning btn-block mt-2">Request Add Fund</button>
+                  <button id="ceratespk" type="submit" class="btn btn-warning w-100 my-2">Request Add Fund</button>
+                </form>
+              </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <button class="btn mb-3 w-100 fw-bold text-white" style="background-color: #1a9988; font-size: 16px;pointer-events: none; cursor: default;">Request Withdraw Fund</button>
+            <div class="card" style="background-color: #1a9988">
+              <div class="card-body">
+                <form name="reqWd">
+                  <div class="form-group mb-2">
+                    <label for="" class="text-white">Available Fund</label>
+                    <input type="text" name="available_fund" class="form-control" value=" {{ formatRp($static_report['current']['avalaible_amount']) }}" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label for="" class="text-white">Amount Withdraw</label>
+                    <input type="text" name="wd" class="form-control" onkeyup="addfundInvesment(this)" required>
+                    <input type="hidden" name="name" value="{{ $user['name'] }}">
+                    <input type="hidden" name="no_hp" value="{{ $user['phone_number'] }}">
+                  </div>
+                  <button id="btnWd" type="submit" class="btn btn-warning btn-block my-2 w-100">Request Withdraw</button>
+                  <button id="btnLoadingWd" class="btn btn-warning w-100 my-2 d-none" disabled type="button">
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Please wait...
+                  </button>
                 </form>
               </div>
             </div>
@@ -424,6 +443,42 @@
         }).catch((err) => {
           console.log(err);
         });
+      }
+
+      const formWd = document.forms['reqWd'];
+      formWd.addEventListener('submit', e => {
+        e.preventDefault();
+        var  dataWd = new FormData(formWd);
+        reqwd(dataWd);     
+      });
+
+      async function  reqwd(dataWd) {
+        var param = {
+          url: '/lender/req-wd',
+          method: 'POST',
+          data: dataWd,
+          processData: false,
+          contentType: false,
+          cache: false,
+        }
+      loadingwd(true);
+      await transAjax(param).then((result) => {
+        loadingwd(false);
+        swal({ title: 'Success', text: result.message, icon: 'success' });
+        }).catch((err) => {
+          loadingwd(false);
+          swal({ title: 'Error!', text: "Internal Server Error!", icon: 'error' });
+        });
+      }   
+
+      function loadingwd(state) {
+        if (state) {
+          $('#btnWd').addClass('d-none');
+          $('#btnLoadingWd').removeClass('d-none');
+        }else {
+          $('#btnWd').removeClass('d-none');
+          $('#btnLoadingWd').addClass('d-none');
+        }
       }
 
       const rupiah = (number) => {

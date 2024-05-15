@@ -47,3 +47,7 @@
         max-width: 960px;
     }
 }
+
+.swal-modal .swal-text {
+    text-align: center;
+}

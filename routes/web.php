@@ -37,6 +37,9 @@ Route::middleware('checkAccessToken')->prefix('lender')->group(function() {
     //send wa
     Route::post('/send-whatsapp', SendwaController::class);
 
+    //req wd
+    Route::post('/req-wd', ReqwdController::class);
+
     //route for logout
     Route::post('/logout', [AuthController::class, 'logout']);
 });

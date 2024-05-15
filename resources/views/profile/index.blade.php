@@ -1,10 +1,6 @@
 @extends('layouts.main')
 @push('css')
 <style>
-  /* Custom CSS for centering text */
-  .swal-modal .swal-text {
-    text-align: center;
-}
 button-group {
     display: flex;
     flex-wrap: wrap;
