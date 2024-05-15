@@ -4,7 +4,7 @@
   <td>{{  date('d-m-Y', strtotime($adb['transaction_date'])) }}</td>
   <td>{{ $adb['bank_name'] }}</td>
   <td>{{ $adb['bank_account_number'] }}</td>
-  <td>{{ $adb['debit'] }}</td>
+  <td>{{ formatRp($adb['debit']) }}</td>
   <td>{{ formatRp($adb['credit']) }}</td>
   <td>{{ formatRp($adb['close_balance']) }}</td>
   <td>{{ $adb['description'] }}</td>
