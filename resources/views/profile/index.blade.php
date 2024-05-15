@@ -30,15 +30,15 @@ button-group {
 @endpush
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4"><span class="fw-light"><a href="/lender/dashboard">Dashboard</a>/</span> Account</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="fw-light"><a href="/lender/dashboard">Dashboard</a> /</span> Account</h4>
     <div class="row">
       <div class="col-md-6 mb-3">
         <ul class="nav nav-pills mb-3 button-group">
-          <a href="/lender/dashboard" class="btn btn-primary me-2"><i class='bx bx-log-out'></i> Back</a>
           <a href="#" class="btn btn-primary me-2" style="pointer-events: none; cursor: default;"><i class="bx bx-user me-1"></i> Account</a>
+          <a href="/lender/dashboard" class="btn btn-primary me-2"><i class='bx bx-log-out'></i> Back</a>
           <button class="btn btn-warning me-2" data-bs-toggle="modal" data-bs-target="#resetPwModal"><i class='bx bx-code-alt'></i> Reset Password</button>
           <form id="logout" class="m-0">
-              <button id="btnLogout" type="submit" class="btn btn-danger xbtn"><i class='bx bx-exit'></i> Logout</button>
+              <button id="btnLogout" type="submit" class="btn btn-danger w-100"><i class='bx bx-exit'></i> Logout</button>
           </form>
           <button id="btnLogoutLoading" class="btn btn-danger d-none" type="button">
               <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
