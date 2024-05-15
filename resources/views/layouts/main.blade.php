@@ -12,8 +12,8 @@
     <meta property="og:title" content="Dashboard">
     <meta property="og:description" content="Lender Financial Reporting Dashboard!">
     <meta property="og:image" content="{{ asset('img') }}/financial_report.png">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img') }}/favicon/favicon.png">
-    <link rel="icon" type="image/x-icon" href="{{ asset('img') }}/favicon/favicon.png" />
+    {{-- <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img') }}/favicon/favicon.png"> --}}
+    {{-- <link rel="icon" type="image/x-icon" href="{{ asset('img') }}/favicon/favicon.png" /> --}}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"/>

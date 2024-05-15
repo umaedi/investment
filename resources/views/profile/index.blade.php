@@ -5,6 +5,27 @@
   .swal-modal .swal-text {
     text-align: center;
 }
+button-group {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .button-group a,
+  .button-group button {
+      margin-bottom: 10px;
+  }
+  @media (max-width: 576px) {
+      .button-group {
+          flex-direction: column;
+      }
+      .button-group a:nth-child(3),
+      .button-group a:nth-child(4),
+      .button-group button:nth-child(3),
+      .button-group button:nth-child(4),
+      .button-group form:nth-child(3),
+      .button-group form:nth-child(4) {
+          order: 1;
+      }
+  }
 </style>
 @endpush
 @section('content')
@@ -12,20 +33,18 @@
     <h4 class="fw-bold py-3 mb-4"><span class="fw-light"><a href="/lender/dashboard">Dashboard</a>/</span> Account</h4>
     <div class="row">
       <div class="col-md-6 mb-3">
-        <ul class="nav nav-pills flex-column flex-md-row mb-3">
+        <ul class="nav nav-pills mb-3 button-group">
           <a href="/lender/dashboard" class="btn btn-primary me-2"><i class='bx bx-log-out'></i> Back</a>
-          <li class="nav-item d-flex">
-            <a class="nav-link active me-2" style="pointer-events: none; cursor: default;"><i class="bx bx-user me-1"></i> Account</a>
-          </li>
-          <button  class="btn btn-warning me-2" data-bs-toggle="modal" data-bs-target="#resetPwModal"><i class='bx bx-code-alt'></i> Reset Password</button>
-          <form id="logout">
-            <button id="btnLogout" type="submit" class="btn btn-danger"><i class='bx bx-exit'></i> Logout</button>
+          <a href="#" class="btn btn-primary me-2" style="pointer-events: none; cursor: default;"><i class="bx bx-user me-1"></i> Account</a>
+          <button class="btn btn-warning me-2" data-bs-toggle="modal" data-bs-target="#resetPwModal"><i class='bx bx-code-alt'></i> Reset Password</button>
+          <form id="logout" class="m-0">
+              <button id="btnLogout" type="submit" class="btn btn-danger xbtn"><i class='bx bx-exit'></i> Logout</button>
           </form>
           <button id="btnLogoutLoading" class="btn btn-danger d-none" type="button">
-            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-            Please wait...
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              Please wait...
           </button>
-        </ul>
+      </ul>
         <div class="card mb-4">
             <h5 class="card-header">Profile Details</h5>
           <hr class="my-0" />
@@ -60,13 +79,7 @@
                 </div>
                 <div class="mb-3 col-md-6">
                   <label for="address" class="form-label">Address</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="address"
-                    name="address"
-                    value="{{ $user['address'] }}"
-                  />
+                  <textarea name="address" id="address" class="form-control">{{ $user['address'] }}</textarea>
                 </div>
                 <div class="mb-3 col-md-6">
                   <label class="form-label" for="Birthday Addrees">Birthday Address</label>
