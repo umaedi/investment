@@ -29,7 +29,7 @@ class AuthController extends Controller
             }
 
         }
-        $data['title'] = 'Lender - Login Duluin';
+        $data['title'] = 'Stake - Login';
         return view('auth.login', $data);
     }
 

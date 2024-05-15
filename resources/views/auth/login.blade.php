@@ -9,11 +9,11 @@
               <span id="notif"></span>
               <div class="card-body">
                 <!-- Logo -->
-                {{-- <div class="app-brand text-center">
+                <div class="app-brand text-center">
                   <a href="/">
-                      <img src="{{ asset('img/logo/logo.webp') }}" alt="" width="50%">
+                      <img src="{{ asset('img/logo/logo_stake_vertical.png') }}" alt="" width="50%">
                   </a>
-                </div> --}}
+                </div>
                 <!-- /Logo -->
                 {{-- <h4 class="mb-2">Welcome Lender! 👋</h4> --}}
                 <h4 class="mb-4">Please sign-in to your account</h4>
