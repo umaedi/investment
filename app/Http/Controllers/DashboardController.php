@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 
 class DashboardController extends Controller
 {
@@ -15,7 +16,16 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request)
     {
-        // $report =$this->post('investor/report/lender');
+        // https://dashboard.duluin.com/api/v1/chart_v1_monthly_growth
+        // dd($report);
+        // $token = $_COOKIE['access_token'];
+        // $response = Http::withToken($token)->get('https://dashboard.duluin.com/api/v1/chart_v1_monthly_growth');
+        // if($response->successful()) {
+        //     return $response->json()['data'];
+        // }
+        // dd($response->body());
+        // return abort($response->body());
+
         if($request->ajax()) {
 
             $params = [

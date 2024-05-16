@@ -285,29 +285,8 @@
           </div>
           <!--/ Bordered Table -->
       </div>
-      {{-- <div class="row">
-      <div class="col-12 col-lg-4 order-2 order-md-3 order-lg-2 mb-4">
-          <div class="card">
-            <h5 class="card-header">Come on, try simulating your investment 🎉</h5>
-            <div class="card-body">
-              <div class="form-group">
-                <label for="">Min Funding</label>
-                <input type="text" id="minFund" class="form-control" min="50000000" onkeyup="formatRupiah(this)">
-              </div>
-              <div class="form-group mt-3">
-                <label for="">Periode</label>
-                <select id="period" name="periode" class="form-select" id="">
-                  <option value="3">3</option>
-                  <option value="6">6</option>
-                  <option value="12">12</option>
-                </select>
-              </div>
-            </div>
-            <button id="calculateBtn" class="btn btn-primary btn-block mt-3">Simulate</button>
-          </div>
-          <!--/ Bordered Table -->
-      </div>
-      <div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
+      <div class="row">
+      <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2 mb-4">
           <div class="card">
             <div class="card h-100">
               <div class="card-body px-0">
@@ -325,19 +304,19 @@
                         </div>
                       </div>
                     </div>
-                    <div id="incomeChart"></div>
+                    <div id="chart"></div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
       </div>
-      </div> --}}
+      </div>
     </div>
   </div>
 @endsection
 @push('js')
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script type="text/javascript" src="{{ asset('js/sweetalert.min.js') }}"></script>
     <script type="text/javascript">
       var month = $('#month').val();
@@ -347,6 +326,7 @@
       var invest_status = '';
       $(document).ready(function() {
         loadTable();
+        loadChartMonthly();
       });
 
       $('#month').change(function() {
@@ -533,5 +513,117 @@
       // document.getElementById("result").innerText = rupiah(investmentReturn - minFund);
       // document.getElementById("monthx").innerText = '/' + period + ' Month';
 // });
+
+
+
+function loadChartMonthly() {
+      $.ajax({
+        url: 'https://dashboard.duluin.com/api/v1/chart_v1_monthly_growth',
+        type: 'GET',
+        dataType: 'JSON',
+        success: (response) => {
+          console.log('API Response:', response); 
+
+          if (response.success && response.data) {
+            var legend = response.data.legend;
+            var xAxis = response.data.xAxis;
+            var series = response.data.series.map((s) => ({
+              name: s.name,
+              type: s.type,
+              data: s.data
+            }));
+            renderChart(legend, xAxis, series);
+          } else {
+            console.error('Invalid API response format', response);
+          }
+        },
+        error: (xhr, status, error) => {
+          console.error('Error loading chart data:', error);
+        }
+      });
+    }
+
+    function renderChart(legend, xAxis, series) {
+      var options = {
+        chart: {
+          type: 'bar',
+          height: 350
+        },
+        colors: ["#1a9988", "#1a9988"],
+        dataLabels: {
+          enabled: true,
+          formatter: function (val, opts) {
+            return val + ' Mio';
+          },
+          style: {
+            fontSize: '16px', 
+            fontWeight: '500',
+            colors: ['var(--body-color)']
+          }
+        },
+        plotOptions: {
+          bar: {
+            borderRadius: 4,
+            dataLabels: {
+              position: 'top'
+            }
+          }
+        },
+        stroke: {
+          curve: 'smooth'
+        },
+        title: {
+          text: 'Monthly Growth',
+          align: 'left',
+          style: {
+            fontSize: '18px' 
+          }
+        },
+        xaxis: {
+          categories: xAxis,
+          labels: {
+            style: {
+              fontSize: '16px' 
+            }
+          }
+        },
+        yaxis: {
+          title: {
+            text: 'Values',
+            style: {
+              fontSize: '12px' 
+            }
+          },
+          labels: {
+            formatter: function (val) {
+              return val + ' Mio';
+            },
+            style: {
+              fontSize: '14px' 
+            }
+          }
+        },
+        series: series,
+        legend: {
+          position: 'top',
+          horizontalAlign: 'right',
+          fontSize: '14px'
+        },
+        tooltip: {
+          theme: 'dark',
+          y: {
+            formatter: function (value) {
+              return value;
+            },
+            style: {
+              fontSize: '16px' 
+            }
+          }
+        }
+      };
+
+      var chart = new ApexCharts(document.querySelector("#chart"), options);
+      chart.render();
+    }
 </script>
 @endpush
