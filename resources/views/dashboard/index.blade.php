@@ -170,27 +170,27 @@
                   <input type="hidden" name="nama rekening" value="{{ $user['bank_account_name'] }}">
                   <input type="hidden" name="phone" value="{{ $user['phone_number'] }}">
                   <input type="hidden" name="email" value="{{ $user['email'] }}">
-                  <button id="ceratespk" type="submit" class="btn btn-warning w-100 my-2">Request Add Fund</button>
+                  <button id="ceratespk" type="submit" class="btn btn-warning w-100 my-2">Request add fund</button>
                 </form>
               </div>
             </div>
         </div>
         <div class="col-lg-3">
-            <button class="btn mb-3 w-100 fw-bold text-white" style="background-color: #1a9988; font-size: 16px;pointer-events: none; cursor: default;">Request Withdraw Fund</button>
+            <button class="btn mb-3 w-100 fw-bold text-white" style="background-color: #1a9988; font-size: 16px;pointer-events: none; cursor: default;">Request Withdrawal Fund</button>
             <div class="card" style="background-color: #1a9988">
               <div class="card-body">
                 <form name="reqWd">
                   <div class="form-group mb-2">
-                    <label for="" class="text-white">Available Fund</label>
-                    <input type="text" name="available_fund" class="form-control" value=" {{ formatRp($static_report['current']['avalaible_amount']) }}" readonly>
+                    <label for="" class="text-white">Total Fund</label>
+                    <input type="text" name="available_fund" class="form-control" value=" {{ formatRp($static_report['current']['total_investment']) }}" readonly>
                   </div>
                   <div class="form-group">
-                    <label for="" class="text-white">Amount Withdraw</label>
+                    <label for="" class="text-white">Amount Withdrawal</label>
                     <input type="text" name="wd" class="form-control" onkeyup="addfundInvesment(this)" required>
                     <input type="hidden" name="name" value="{{ $user['name'] }}">
                     <input type="hidden" name="no_hp" value="{{ $user['phone_number'] }}">
                   </div>
-                  <button id="btnWd" type="submit" class="btn btn-warning btn-block my-2 w-100">Request Withdraw</button>
+                  <button id="btnWd" type="submit" class="btn btn-warning btn-block my-2 w-100">Request withdrawal</button>
                   <button id="btnLoadingWd" class="btn btn-warning w-100 my-2 d-none" disabled type="button">
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     Please wait...

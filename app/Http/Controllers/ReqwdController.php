@@ -17,11 +17,12 @@ class ReqwdController extends Controller
     public function __invoke(Request $request)
     {
         $instanceID = '66069f95c302c5956ac9ca24';
-        $phoneNumbers = '62811163319';
+        $figra = '628970844853';
+        $mahen = '62811163319';
 
         $token = Cache::get('token');
 
-        // $nomorWhatsAppBaru = "62" . substr($request->phone, 1);
+        // $nomorWhatsAppBaru = "62" . substr($request->phone, 1); 
         $messagePersonal = '
 *Request Withdraw*
 
@@ -40,7 +41,7 @@ Mohon untuk segera di konfirmasi
 $response = Http::withToken($token)
             ->post('https://apiks.ristekmuslim.com/client/v1/message/send-text', [
                 'instanceID'    => $instanceID,
-                'phone'         => $phoneNumbers,
+                'phone'         => $figra,
                 'message'       => $messagePersonal,
                 'serverSend'    => 'false'
             ]);
@@ -58,11 +59,10 @@ $response = Http::withToken($token)
 
                     Http::withToken($token)->post('https://apiks.ristekmuslim.com/client/v1/message/send-text', [
                         'instanceID'    => $instanceID,
-                        'phone'         => $phoneNumbers,
+                        'phone'         => $figra,
                         'message'       => $messagePersonal,
                         'serverSend'    => 'false'
                     ]);
-                    dd('ok1');
                     return $this->success('OK', "Request Withdraw Berhasil Terikirim, PIC funding kami segera menghubungi bapak / ibu");
                 }
             }else {
@@ -80,13 +80,18 @@ $response = Http::withToken($token)
 
                 Http::withToken($token)->post('https://apiks.ristekmuslim.com/client/v1/message/send-text', [
                     'instanceID'    => $instanceID,
-                    'phone'         => $phoneNumbers,
+                    'phone'         => $figra,
                     'message'       => $messagePersonal,
                     'serverSend'    => 'false'
                 ]);
-                dd('ok2');
                 return $this->success('OK', "Request Withdraw Berhasil Terikirim, PIC funding kami segera menghubungi bapak / ibu");
             }
+            Http::withToken($token)->post('https://apiks.ristekmuslim.com/client/v1/message/send-text', [
+                'instanceID'    => $instanceID,
+                'phone'         => $mahen,
+                'message'       => $messagePersonal,
+                'serverSend'    => 'false'
+            ]);
             return $this->success('OK', "Request Withdraw Berhasil Terikirim, PIC funding kami segera menghubungi bapak / ibu");
     }
 }
