@@ -337,6 +337,14 @@
          loadTable();
       });
 
+      $("#page").change(function() {
+         month = $('#month').val();
+         year = $('#year').val();
+         length = $('#page').val();
+         invest_status = $('#status').val();
+         loadTable();
+      });
+
       $('#status').change(function() {
          month = $('#month').val();
          year = $('#year').val();

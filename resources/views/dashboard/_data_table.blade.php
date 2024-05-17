@@ -56,7 +56,7 @@
     </tr>
   </tfoot>
 </table>
-@if (count($table['data']) >= 50) 
+{{-- @if (count($table['data']) >= 50) 
 <div class="mt-3">
   <div class="text-center"> 
     <button id="loadMore" class="btn btn-primary d-none" type="button" disabled>
@@ -65,6 +65,6 @@
     </button>
     <button id="btnLoadmore" class="btn btn-primary xbtn" onclick="loadMore()">Loadmore</button>
   </div>
-</div> 
-@endif
+</div>  --}}
+{{-- @endif --}}
 
