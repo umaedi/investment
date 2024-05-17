@@ -513,111 +513,74 @@
       // document.getElementById("result").innerText = rupiah(investmentReturn - minFund);
       // document.getElementById("monthx").innerText = '/' + period + ' Month';
 // });
-
-
-
 function loadChartMonthly() {
       $.ajax({
         url: 'https://dashboard.duluin.com/api/v1/chart_v1_monthly_growth',
         type: 'GET',
         dataType: 'JSON',
-        success: (response) => {
-          console.log('API Response:', response); 
+        success: function(response) {
+          console.log('API Response:', response); // Debugging: Log the response
 
           if (response.success && response.data) {
-            var legend = response.data.legend;
-            var xAxis = response.data.xAxis;
-            var series = response.data.series.map((s) => ({
-              name: s.name,
-              type: s.type,
-              data: s.data
+            const xAxis = response.data.xAxis;
+            const seriesData = response.data.series[0].data; // Assuming there's only one series
+            const formattedData = seriesData.map((value, index) => ({
+              x: xAxis[index],
+              y: value,
+              goals: [
+                {
+                  name: 'Expected',
+                  value: value, // This is an example. You can set your own logic for expected values.
+                  strokeHeight: 5,
+                  strokeColor: '#775DD0'
+                }
+              ]
             }));
-            renderChart(legend, xAxis, series);
+
+            renderChart(formattedData);
           } else {
             console.error('Invalid API response format', response);
           }
         },
-        error: (xhr, status, error) => {
+        error: function(xhr, status, error) {
           console.error('Error loading chart data:', error);
         }
       });
     }
 
-    function renderChart(legend, xAxis, series) {
+    function renderChart(data) {
       var options = {
+        series: [
+          {
+            name: 'Actual',
+            data: data
+          }
+        ],
         chart: {
+          height: 350,
           type: 'bar',
-          height: 350
-        },
-        colors: ["#1a9988", "#1a9988"],
-        dataLabels: {
-          enabled: true,
-          formatter: function (val, opts) {
-            return val + ' Mio';
-          },
-          style: {
-            fontSize: '16px', 
-            fontWeight: '500',
-            colors: ['var(--body-color)']
+          toolbar: {
+            show: true,
+            tools: {
+              download: false // Disable the download button
+            }
           }
         },
         plotOptions: {
           bar: {
-            borderRadius: 4,
-            dataLabels: {
-              position: 'top'
-            }
+            columnWidth: '60%'
           }
         },
-        stroke: {
-          curve: 'smooth'
+        colors: ['#00E396'],
+        dataLabels: {
+          enabled: false
         },
-        title: {
-          text: 'Monthly Growth',
-          align: 'left',
-          style: {
-            fontSize: '18px' 
-          }
-        },
-        xaxis: {
-          categories: xAxis,
-          labels: {
-            style: {
-              fontSize: '16px' 
-            }
-          }
-        },
-        yaxis: {
-          title: {
-            text: 'Values',
-            style: {
-              fontSize: '12px' 
-            }
-          },
-          labels: {
-            formatter: function (val) {
-              return val + ' Mio';
-            },
-            style: {
-              fontSize: '14px' 
-            }
-          }
-        },
-        series: series,
         legend: {
-          position: 'top',
-          horizontalAlign: 'right',
-          fontSize: '14px'
-        },
-        tooltip: {
-          theme: 'dark',
-          y: {
-            formatter: function (value) {
-              return value;
-            },
-            style: {
-              fontSize: '16px' 
-            }
+          show: true,
+          showForSingleSeries: true,
+          customLegendItems: ['Actual', 'Expected'],
+          markers: {
+            fillColors: ['#00E396', '#775DD0']
           }
         }
       };
