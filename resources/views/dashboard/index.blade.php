@@ -41,7 +41,7 @@
               {{-- <div class="row"> --}}
                 <div class="col-md-12">
                   <div class="card-body">
-                    <h5 class="card-title text-white">Total Fund </h5>
+                    <h5 class="card-title text-white">Total fund </h5>
                     <h3 class="card-text text-white">
                       {{ formatRp($static_report['current']['total_investment']) }}
                     </h3>
@@ -55,7 +55,7 @@
               {{-- <div class="row g-0"> --}}
                 <div class="col-md-12">
                   <div class="card-body">
-                    <h5 class="card-title text-white">Amount Disbursed</h5>
+                    <h5 class="card-title text-white">Amount disbursed</h5>
                     <h3 class="card-text text-white">
                       {{ formatRp($static_report['current']['loan_project']) }}
                     </h3>
@@ -83,7 +83,7 @@
               {{-- <div class="row g-0"> --}}
                 <div class="col-md-12">
                   <div class="card-body">
-                    <h5 class="card-title text-white">Available Fund</h5>
+                    <h5 class="card-title text-white">Available fund</h5>
                     <h3 class="card-text text-white">
                       {{ formatRp($static_report['current']['avalaible_amount']) }}
                     </h3>
@@ -100,7 +100,7 @@
               {{-- <div class="row g-0">
                 <div class="col-md-8"> --}}
                   <div class="card-body">
-                    <h5 class="card-title text-white">Total Transactions</h5>
+                    <h5 class="card-title text-white">Total transactions</h5>
                     <h3 class="card-text text-white">
                       {{ $static_report['since_exist']['total_transaction'] }}
                     </h3>
@@ -114,7 +114,7 @@
               {{-- <div class="row g-0">
                 <div class="col-md-8"> --}}
                   <div class="card-body">
-                    <h5 class="card-title text-white">Total Amount</h5>
+                    <h5 class="card-title text-white">Total amount</h5>
                     <h3 class="card-text text-white">
                       {{ formatRp($static_report['since_exist']['total_amount']) }}
                     </h3>
@@ -128,7 +128,7 @@
               {{-- <div class="row g-0">
                 <div class="col-md-8"> --}}
                   <div class="card-body">
-                    <h5 class="card-title text-white">Total Return</h5>
+                    <h5 class="card-title text-white">Total return</h5>
                     <h3 class="card-text text-white">
                       {{ formatRp($static_report['since_exist']['total_return']) }}
                     </h3>
@@ -140,17 +140,17 @@
         </div>
         </div>
         <div class="col-lg-3 mb-3">
-            <button class="btn mb-3 w-100 fw-bold text-white" style="background-color: #1a9988; font-size: 16px;pointer-events: none; cursor: default;">Add Fund Investment</button>
+            <button class="btn mb-3 w-100 fw-bold text-white" style="background-color: #1a9988; font-size: 16px;pointer-events: none; cursor: default;">Request Add Fund</button>
             <div class="card" style="background-color: #1a9988">
               <div class="card-body">
                 <form name="generateSpK">
                   <div class="form-group mb-2">
-                    <label for="" class="text-white">Amount Investment
+                    <label for="" class="text-white">Amount add fund
                     </label>
                     <input type="text" name="topup" class="form-control" value="Rp 50.000.000" onkeyup="addfundInvesment(this)">
                   </div>
                   <div class="form-group">
-                    <label for="" class="text-white">Period Month</label>
+                    <label for="" class="text-white">Period month</label>
                     <select name="period" class="form-select" id="">
                       <option value="3">3</option>
                       <option value="6">6</option>
@@ -170,7 +170,7 @@
                   <input type="hidden" name="nama rekening" value="{{ $user['bank_account_name'] }}">
                   <input type="hidden" name="phone" value="{{ $user['phone_number'] }}">
                   <input type="hidden" name="email" value="{{ $user['email'] }}">
-                  <button id="ceratespk" type="submit" class="btn btn-warning w-100 my-2">Request add fund</button>
+                  <button id="ceratespk" type="submit" class="btn btn-warning w-100 my-2"><i class='bx bx-paper-plane'></i> Create request</button>
                 </form>
               </div>
             </div>
@@ -181,16 +181,16 @@
               <div class="card-body">
                 <form name="reqWd">
                   <div class="form-group mb-2">
-                    <label for="" class="text-white">Total Fund</label>
+                    <label for="" class="text-white">Total fund</label>
                     <input type="text" name="available_fund" class="form-control" value=" {{ formatRp($static_report['current']['total_investment']) }}" readonly>
                   </div>
                   <div class="form-group">
-                    <label for="" class="text-white">Amount Withdrawal</label>
+                    <label for="" class="text-white">Amount withdrawal</label>
                     <input type="text" name="wd" class="form-control" onkeyup="addfundInvesment(this)" required>
                     <input type="hidden" name="name" value="{{ $user['name'] }}">
                     <input type="hidden" name="no_hp" value="{{ $user['phone_number'] }}">
                   </div>
-                  <button id="btnWd" type="submit" class="btn btn-warning btn-block my-2 w-100">Request withdrawal</button>
+                  <button id="btnWd" type="submit" class="btn btn-warning btn-block my-2 w-100"><i class='bx bx-paper-plane'></i> Create request</button>
                   <button id="btnLoadingWd" class="btn btn-warning w-100 my-2 d-none" disabled type="button">
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     Please wait...
