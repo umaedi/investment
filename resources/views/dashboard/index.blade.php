@@ -285,33 +285,6 @@
           </div>
           <!--/ Bordered Table -->
       </div>
-      <div class="row">
-      <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2 mb-4">
-          <div class="card">
-            <div class="card h-100">
-              <div class="card-body px-0">
-                <div class="tab-content p-0">
-                  <div class="tab-pane fade show active" id="navs-tabs-line-card-income" role="tabpanel">
-                    <div class="d-flex p-4 pt-3 d-none" id="profit">
-                      <div class="avatar flex-shrink-0 me-3">
-                        <img src="{{ asset('img') }}/icons/unicons/cc-success.png" alt="User" />
-                      </div>
-                      <div>
-                          <small class="text-muted d-block">Profit</small>
-                          <div class="d-flex align-items-center">
-                            <h6 class="mb-0 me-1" id="result"></h6>
-                            <h6 class="mb-0 me-1" id="monthx"></h6>
-                        </div>
-                      </div>
-                    </div>
-                    <div id="chart"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-      </div>
-      </div>
     </div>
   </div>
 @endsection
@@ -322,7 +295,7 @@
       var month = $('#month').val();
       var year = $('#year').val();
       var start = 0;
-      var length = 50;
+      var length = '';
       var invest_status = '';
       $(document).ready(function() {
         loadTable();
@@ -338,7 +311,7 @@
       });
 
       $("#page").change(function() {
-         month = $('#month').val();
+        month = $('#month').val();
          year = $('#year').val();
          length = $('#page').val();
          invest_status = $('#status').val();
@@ -521,80 +494,69 @@
       // document.getElementById("result").innerText = rupiah(investmentReturn - minFund);
       // document.getElementById("monthx").innerText = '/' + period + ' Month';
 // });
-function loadChartMonthly() {
-      $.ajax({
-        url: 'https://dashboard.duluin.com/api/v1/chart_v1_monthly_growth',
-        type: 'GET',
-        dataType: 'JSON',
-        success: function(response) {
-          console.log('API Response:', response); // Debugging: Log the response
-
-          if (response.success && response.data) {
-            const xAxis = response.data.xAxis;
-            const seriesData = response.data.series[0].data; // Assuming there's only one series
-            const formattedData = seriesData.map((value, index) => ({
-              x: xAxis[index],
-              y: value,
-              goals: [
-                {
-                  name: 'Expected',
-                  value: value, // This is an example. You can set your own logic for expected values.
-                  strokeHeight: 5,
-                  strokeColor: '#775DD0'
-                }
-              ]
-            }));
-
-            renderChart(formattedData);
-          } else {
-            console.error('Invalid API response format', response);
-          }
-        },
-        error: function(xhr, status, error) {
-          console.error('Error loading chart data:', error);
-        }
-      });
-    }
-
-    function renderChart(data) {
-      var options = {
-        series: [
-          {
+var options = {
+    series: [
+        {
             name: 'Actual',
-            data: data
-          }
-        ],
-        chart: {
-          height: 350,
-          type: 'bar',
-          toolbar: {
-            show: true,
-            tools: {
-              download: false // Disable the download button
-            }
-          }
+            data: [
+                { x: 'Dec', y: 85000000 },
+                { x: 'Jan', y: 237000000 },
+                { x: 'Feb', y: 970000000 },
+                { x: 'Mar', y: null },
+                { x: 'Apr', y: null },
+                { x: 'May', y: null },
+                { x: 'Jun', y: null },
+                { x: 'Jul', y: null },
+                { x: 'Aug', y: null },
+                { x: 'Sep', y: null },
+                { x: 'Oct', y: null },
+                { x: 'Nov', y: null },
+                { x: 'Dec', y: null }
+            ]
         },
-        plotOptions: {
-          bar: {
-            columnWidth: '60%'
-          }
-        },
-        colors: ['#00E396'],
-        dataLabels: {
-          enabled: false
-        },
-        legend: {
-          show: true,
-          showForSingleSeries: true,
-          customLegendItems: ['Actual', 'Expected'],
-          markers: {
-            fillColors: ['#00E396', '#775DD0']
-          }
+        {
+            name: 'Expected',
+            data: [
+                { x: 'Dec', y: 85000000 },
+                { x: 'Jan', y: 237000000 },
+                { x: 'Feb', y: 970000000 },
+                { x: 'Mar', y: 2000000000 },
+                { x: 'Apr', y: 3000000000 },
+                { x: 'May', y: 5000000000 },
+                { x: 'Jun', y: 7000000000 },
+                { x: 'Jul', y: 9000000000 },
+                { x: 'Aug', y: 11000000000 },
+                { x: 'Sep', y: 13000000000 },
+                { x: 'Oct', y: 15000000000 },
+                { x: 'Nov', y: 17000000000 },
+                { x: 'Dec', y: 20000000000 }
+            ]
         }
-      };
-
-      var chart = new ApexCharts(document.querySelector("#chart"), options);
-      chart.render();
+    ],
+    chart: {
+        height: 350,
+        type: 'bar'
+    },
+    plotOptions: {
+        bar: {
+            columnWidth: '60%'
+        }
+    },
+    colors: ['#00E396', '#775DD0'],
+    dataLabels: {
+        enabled: false
+    },
+    legend: {
+        show: true,
+        customLegendItems: ['Actual', 'Expected'],
+        markers: {
+            fillColors: ['#00E396', '#775DD0']
+        }
     }
+};
+
+var chart = new ApexCharts(document.querySelector("#chart"), options);
+chart.render();
+
 </script>
 @endpush

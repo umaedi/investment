@@ -65,6 +65,6 @@
     </button>
     <button id="btnLoadmore" class="btn btn-primary xbtn" onclick="loadMore()">Loadmore</button>
   </div>
-</div>  --}}
-{{-- @endif --}}
+</div> 
+@endif --}}
 
